@@ -4,79 +4,6 @@ import java.math.BigInteger;
 
 
 public class Local {
-
-	public static class Builder {
-		
-		private BigInteger codiLocal;
-		private BigInteger codiTipoLocal;
-		private BigInteger codiCarrer;
-		private String nomCarrer;
-		private String nomVia;
-		private BigInteger numero;
-		private String nomLocal;
-		private String observacions;
-		private boolean verificat;
-		
-		public Builder(BigInteger codiLocal) {
-			this.codiLocal = codiLocal;
-		}
-		
-		public Builder WithCodiTipoLocal(BigInteger codiTipoLocal) {
-			this.codiTipoLocal = codiTipoLocal;
-			return this;
-		}
-		
-		public Builder WithCodiCarrer(BigInteger codiCarrer) {
-			this.codiCarrer = codiCarrer;
-			return this;
-		}
-		
-		public Builder WithNomCarrer(String nomCarrer) {
-			this.nomCarrer = nomCarrer;
-			return this;
-		}
-		
-		public Builder WithNomVia(String nomVia) {
-			this.nomVia = nomVia;
-			return this;
-		}
-		
-		public Builder WithNumero(BigInteger numero) {
-			this.numero = numero;
-			return this;
-		}
-		
-		public Builder WithNomLocal(String nomLocal) {
-			this.nomLocal = nomLocal;
-			return this;
-		}
-		
-		public Builder WithObservacions(String observacions) {
-			this.observacions = observacions;
-			return this;
-		}
-		
-		public Builder WithVerificat(boolean verificat) {
-			this.verificat = verificat;
-			return this;
-		}
-		
-		public Local build() {
-			
-			Local local = new Local();
-			local.codiLocal = this.codiLocal;
-			local.codiTipoLocal = this.codiTipoLocal;
-			local.codiCarrer = this.codiCarrer;
-			local.nomCarrer = this.nomCarrer;
-			local.nomVia = this.nomVia;
-			local.numero = this.numero;
-			local.nomLocal = this.nomLocal;
-			local.observacions = this.observacions;
-			local.verificat = this.verificat;
-			
-			return local;
-		}
-	}
 	
 	private BigInteger codiLocal;
 	private BigInteger codiTipoLocal;
@@ -88,8 +15,19 @@ public class Local {
 	private String observacions;
 	private boolean verificat;
 	
-	private Local() {
-		//Empty constructor because of the use of the Builder Pattern
+	private Local(	BigInteger codiLocal, BigInteger codiTipoLocal, BigInteger codiCarrer, 
+					String nomCarrer, String nomVia, BigInteger numero,	String nomLocal,
+					String observacions, boolean verificat) {
+		
+		this.codiLocal = codiLocal;
+		this.codiTipoLocal = codiTipoLocal;
+		this.codiCarrer = codiCarrer;
+		this.nomCarrer = nomCarrer;
+		this.nomVia = nomVia;
+		this.numero = numero;
+		this.nomLocal = nomLocal;
+		this.observacions = observacions;
+		this.verificat = verificat;
 	}
 	
 	public BigInteger getCodiLocal() {

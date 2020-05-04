@@ -12,8 +12,9 @@
 <div id="form-wrapper" style="max-width:500px;margin:auto;">
 <h1>Afegeix un local</h1>
 <br>
-<form method="post" action="SvlEAccessible">
+<form method="post" action="/SvlEAccessible">
 
+<!--  
 <label>Codi tipus de local :</label>
 	<input list="codis" name="codiTipoLocal">
 	  <datalist id="codis">
@@ -22,6 +23,11 @@
 	    <option value="Cafeteria">
 	  </datalist>
 	<br>
+-->
+
+<label>Codi tipus de local :</label>
+<input name="codiTipoLocal" placeholder="Codi del local" type="number">
+<br>
 
 <label>Codi del carrer :</label>
 <input name="codiCarrer" placeholder="Codi del carrer" type="number">
@@ -55,8 +61,6 @@ Verificat:
 <input type="submit" value="Accepta">
 
 </form>
-</div>
-</div>
 </div>
 </body>
 </html>
