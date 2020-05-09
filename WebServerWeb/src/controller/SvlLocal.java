@@ -18,16 +18,16 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
- * Servlet implementation class SvlEAccessible
+ * Servlet implementation class SvlLocal
  */
-@WebServlet("/SvlEAccessible")
-public class SvlEAccessible extends HttpServlet {
+@WebServlet("/SvlLocal")
+public class SvlLocal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SvlEAccessible() {
+    public SvlLocal() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,6 @@ public class SvlEAccessible extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		doFer(request, response);
 	}
@@ -45,7 +44,6 @@ public class SvlEAccessible extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	
@@ -84,7 +82,7 @@ public class SvlEAccessible extends HttpServlet {
 				else {	
 					Connection connection = ds.getConnection();
 					Statement stm = connection.createStatement();
-					stm.executeUpdate("insert into eAccessible (codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat) values('"+codiTipoLocal+"','"+codiCarrer+"','"+nomCarrer+"','"+nomVia+"','"+numero+"','"+nomLocal+"','"+observacions+"','"+verificat+"')");
+					stm.executeUpdate("insert into eAccessible.Local (codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat) values('"+codiTipoLocal+"','"+codiCarrer+"','"+nomCarrer+"','"+nomVia+"','"+numero+"','"+nomLocal+"','"+observacions+"','"+verificat+"')");
 					connection.close();
 					stm.close();
 				}

@@ -14,4 +14,3 @@ public class WebServiceLocal {
 		return("Local " + local.getNomLocal() + " creat");
 	}
 }
-
