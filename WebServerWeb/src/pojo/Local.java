@@ -34,24 +34,24 @@ public class Local {
 		return codiLocal;
 	}
 
-	public void setCodiLocal(BigInteger codiLocal) {
-		this.codiLocal = codiLocal;
+	public void setCodiLocal(int i) {
+		this.codiLocal = i;
 	}
 
 	public BigInteger getCodiTipoLocal() {
 		return codiTipoLocal;
 	}
 
-	public void setCodiTipoLocal(BigInteger codiTipoLocal) {
-		this.codiTipoLocal = codiTipoLocal;
+	public void setCodiTipoLocal(int i) {
+		this.codiTipoLocal = i;
 	}
 
 	public BigInteger getCodiCarrer() {
 		return codiCarrer;
 	}
 
-	public void setCodiCarrer(BigInteger codiCarrer) {
-		this.codiCarrer = codiCarrer;
+	public void setCodiCarrer(int i) {
+		this.codiCarrer = i;
 	}
 
 	public String getNomCarrer() {
@@ -74,8 +74,8 @@ public class Local {
 		return numero;
 	}
 
-	public void setNumero(BigInteger numero) {
-		this.numero = numero;
+	public void setNumero(int i) {
+		this.numero = i;
 	}
 
 	public String getNomLocal() {
@@ -98,8 +98,8 @@ public class Local {
 		return verificat;
 	}
 
-	public void setVerificat(boolean verificat) {
-		this.verificat = verificat;
+	public void setVerificat(String string) {
+		this.verificat = string;
 	}
 	
 }
