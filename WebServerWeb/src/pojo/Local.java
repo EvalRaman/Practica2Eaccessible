@@ -28,6 +28,10 @@ public class Local {
 		this.verificat = verificat;
 	}
 	
+	public Local() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCodiLocal() {
 		return codiLocal;
 	}

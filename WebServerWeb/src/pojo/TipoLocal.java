@@ -1,14 +1,13 @@
 package pojo;
 
-import java.math.BigInteger;
 
 public class TipoLocal {
-	private BigInteger codiTipoLocal;
+	private int codiTipoLocal;
 	private String nomTipoLocalCA;
 	private String nomTipoLocalES;
 	private String nomTipoLocalEN;
 	
-	public TipoLocal(	BigInteger codiTipoLocal, String nomTipoLocalCA, String nomTipoLocalES,
+	public TipoLocal(	int codiTipoLocal, String nomTipoLocalCA, String nomTipoLocalES,
 						String nomTipoLocalEN) {
 		
 		this.setCodiTipoLocal(codiTipoLocal);
@@ -18,12 +17,16 @@ public class TipoLocal {
 		
 	}
 
-	public BigInteger getCodiTipoLocal() {
+	public TipoLocal() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getCodiTipoLocal() {
 		return codiTipoLocal;
 	}
 
-	public void setCodiTipoLocal(BigInteger codiTipoLocal) {
-		this.codiTipoLocal = codiTipoLocal;
+	public void setCodiTipoLocal(int i) {
+		this.codiTipoLocal = i;
 	}
 
 	public String getNomTipoLocalCA() {

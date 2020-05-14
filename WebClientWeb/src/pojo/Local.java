@@ -13,6 +13,8 @@ public class Local {
 	private String observacions;
 	private String verificat;
 	
+	public Local () {}
+	
 	public Local(	int codiLocal, int codiTipoLocal, int codiCarrer, 
 					String nomCarrer, String nomVia, int numero, String nomLocal,
 					String observacions, String verificat) {

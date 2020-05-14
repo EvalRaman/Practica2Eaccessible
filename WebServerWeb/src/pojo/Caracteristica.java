@@ -1,18 +1,17 @@
 package pojo;
 
-import java.math.BigInteger;
 
 public class Caracteristica {
-	private BigInteger codiCaracteristica;
+	private int codiCaracteristica;
 	private String nomCaracteristicaCA;
 	private String nomCaracteristicaES;
 	private String nomCaracteristicaEN;
 	private Integer tipo;
-	private BigInteger codiNivell;
+	private int codiNivell;
 	
-	public Caracteristica(	BigInteger codiCaracteristica, String nomCaracteristicaCA,
+	public Caracteristica(	int codiCaracteristica, String nomCaracteristicaCA,
 							String nomCaracteristicaES,	String nomCaracteristicaEN,
-							Integer tipo, BigInteger codiNivell) {
+							Integer tipo, int codiNivell) {
 		
 		this.setCodiCaracteristica(codiCaracteristica);
 		this.setNomCaracteristicaCA(nomCaracteristicaCA);
@@ -23,11 +22,15 @@ public class Caracteristica {
 		
 	}
 
-	public BigInteger getCodiCaracteristica() {
+	public Caracteristica() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getCodiCaracteristica() {
 		return codiCaracteristica;
 	}
 
-	public void setCodiCaracteristica(BigInteger codiCaracteristica) {
+	public void setCodiCaracteristica(int codiCaracteristica) {
 		this.codiCaracteristica = codiCaracteristica;
 	}
 
@@ -63,11 +66,11 @@ public class Caracteristica {
 		this.tipo = tipo;
 	}
 
-	public BigInteger getCodiNivell() {
+	public int getCodiNivell() {
 		return codiNivell;
 	}
 
-	public void setCodiNivell(BigInteger codiNivell) {
+	public void setCodiNivell(int codiNivell) {
 		this.codiNivell = codiNivell;
 	}
 	

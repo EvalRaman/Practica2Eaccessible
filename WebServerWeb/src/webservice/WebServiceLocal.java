@@ -645,7 +645,7 @@ public class WebServiceLocal {
         String strEstat = new String();
         Connection connection = null;
 
-        List<Caracteristica> caracteristicaValorLlista = new ArrayList<CaracteristicaValor>();
+        List<Caracteristica> caracteristicaValorLlista = new ArrayList<Caracteristica>();
 
         try {
             InitialContext cxt = new InitialContext();

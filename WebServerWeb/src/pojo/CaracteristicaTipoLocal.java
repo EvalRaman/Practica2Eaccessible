@@ -1,15 +1,14 @@
 package pojo;
 
-import java.math.BigInteger;
 
 public class CaracteristicaTipoLocal {
 	
-	private BigInteger codicaracteristicatipolocal;
-	private BigInteger codicaracteristica;
-	private BigInteger coditipolocal;
+	private int codicaracteristicatipolocal;
+	private int codicaracteristica;
+	private int coditipolocal;
 	
-	public CaracteristicaTipoLocal(	BigInteger codicaracteristicatipolocal,
-									BigInteger codicaracteristica, BigInteger coditipolocal) {
+	public CaracteristicaTipoLocal(	int codicaracteristicatipolocal,
+									int codicaracteristica, int coditipolocal) {
 		
 		this.setCodicaracteristicatipolocal(codicaracteristicatipolocal);
 		this.setCodicaracteristica(codicaracteristica);
@@ -17,27 +16,31 @@ public class CaracteristicaTipoLocal {
 		
 	}
 
-	public BigInteger getCodicaracteristicatipolocal() {
+	public CaracteristicaTipoLocal() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getCodicaracteristicatipolocal() {
 		return codicaracteristicatipolocal;
 	}
 
-	public void setCodicaracteristicatipolocal(BigInteger codicaracteristicatipolocal) {
+	public void setCodicaracteristicatipolocal(int codicaracteristicatipolocal) {
 		this.codicaracteristicatipolocal = codicaracteristicatipolocal;
 	}
 
-	public BigInteger getCodicaracteristica() {
+	public int getCodicaracteristica() {
 		return codicaracteristica;
 	}
 
-	public void setCodicaracteristica(BigInteger codicaracteristica) {
+	public void setCodicaracteristica(int codicaracteristica) {
 		this.codicaracteristica = codicaracteristica;
 	}
 
-	public BigInteger getCoditipolocal() {
+	public int getCoditipolocal() {
 		return coditipolocal;
 	}
 
-	public void setCoditipolocal(BigInteger coditipolocal) {
+	public void setCoditipolocal(int coditipolocal) {
 		this.coditipolocal = coditipolocal;
 	}
 	
