@@ -22,8 +22,8 @@ public class TipoLocal {
 		return codiTipoLocal;
 	}
 
-	public void setCodiTipoLocal(BigInteger codiTipoLocal) {
-		this.codiTipoLocal = codiTipoLocal;
+	public void setCodiTipoLocal(int i) {
+		this.codiTipoLocal = i;
 	}
 
 	public String getNomTipoLocalCA() {

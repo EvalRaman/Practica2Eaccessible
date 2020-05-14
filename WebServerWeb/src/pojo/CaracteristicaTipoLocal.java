@@ -21,24 +21,24 @@ public class CaracteristicaTipoLocal {
 		return codicaracteristicatipolocal;
 	}
 
-	public void setCodicaracteristicatipolocal(BigInteger codicaracteristicatipolocal) {
-		this.codicaracteristicatipolocal = codicaracteristicatipolocal;
+	public void setCodicaracteristicatipolocal(int i) {
+		this.codicaracteristicatipolocal = i;
 	}
 
 	public BigInteger getCodicaracteristica() {
 		return codicaracteristica;
 	}
 
-	public void setCodicaracteristica(BigInteger codicaracteristica) {
-		this.codicaracteristica = codicaracteristica;
+	public void setCodicaracteristica(int i) {
+		this.codicaracteristica = i;
 	}
 
 	public BigInteger getCoditipolocal() {
 		return coditipolocal;
 	}
 
-	public void setCoditipolocal(BigInteger coditipolocal) {
-		this.coditipolocal = coditipolocal;
+	public void setCoditipolocal(int i) {
+		this.coditipolocal = i;
 	}
 	
 }

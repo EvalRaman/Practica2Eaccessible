@@ -27,8 +27,8 @@ public class Caracteristica {
 		return codiCaracteristica;
 	}
 
-	public void setCodiCaracteristica(BigInteger codiCaracteristica) {
-		this.codiCaracteristica = codiCaracteristica;
+	public void setCodiCaracteristica(int i) {
+		this.codiCaracteristica = i;
 	}
 
 	public String getNomCaracteristicaCA() {
@@ -67,8 +67,8 @@ public class Caracteristica {
 		return codiNivell;
 	}
 
-	public void setCodiNivell(BigInteger codiNivell) {
-		this.codiNivell = codiNivell;
+	public void setCodiNivell(int i) {
+		this.codiNivell = i;
 	}
 	
 }
