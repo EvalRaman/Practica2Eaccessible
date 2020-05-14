@@ -1,15 +1,25 @@
 package webservice;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import pojo.Accessibilitat;
 import pojo.Local;
+import Exceptions.ErrorException;
 
 
 @WebService
 public class WebServiceLocal {
     
 	@WebMethod
-	public void altaLocal(Local local, List<Accessibilitat> accessibilitat) throws ExceptionController {
+	public void altaLocal(Local local, List<Accessibilitat> accessibilitat) throws ErrorException {
 		String strEstat = new String();
 		Connection connection = null;
 
@@ -24,12 +34,12 @@ public class WebServiceLocal {
 				else{
 					connection = ds.getConnection();
 
-					String query = "insert into eAccessible.Local (codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat) values('"+codiTipoLocal+"','"+codiCarrer+"','"+nomCarrer+"','"+nomVia+"','"+numero+"','"+nomLocal+"','"+observacions+"','"+verificat+"')");
+					String query = "insert into eAccessible.Local (codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat) values('"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"','"+local.getNomLocal()+"','"+local.getObservacions()+"','"+local.getVerificat()+"')";
 					Statement stm = connection.createStatement();
 					stm.executeUpdate(query);
 
 					for(int i=0; i<accessibilitat.size(); i=i+1) {
-						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiaccessibilitat()+"','"+accessibilitat.get(i).getCodilocal()+"','"+accessibilitat.get(i).getCodicaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
+						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
 					}
 
 					connection.close();
@@ -52,7 +62,7 @@ public class WebServiceLocal {
 	}
 
 	@WebMethod
-	public void baixaLocal(int codiLocal) throws ExceptionController {
+	public void baixaLocal(int codiLocal) throws ErrorException {
 		String strEstat = new String();
 		Connection connection = null;
 

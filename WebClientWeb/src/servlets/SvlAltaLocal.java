@@ -1,4 +1,4 @@
-package controller;
+package servlets;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -19,19 +19,18 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import pojo.Local;
-import webservice.WebServiceLocal;
 
 /**
  * Servlet implementation class SvlLocal
  */
 @WebServlet("/SvlLocal")
-public class SvlLocal extends HttpServlet {
+public class SvlAltaLocal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SvlLocal() {
+    public SvlAltaLocal() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -75,10 +74,9 @@ public class SvlLocal extends HttpServlet {
 		session.setAttribute("eAccessible.observacions", observacions);
 		session.setAttribute("eAccessible.verificat", verificat);
 		
-		Local local = new Local(codiLocal, codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat);
-		WebServiceLocal wsLocal = new WebServiceLocal();
-		wsLocal.altaLocal(local, accessibilitats);
-													
+		// TODO
+		// Crida al webservice
+		
 		try
 		{
 			ServletContext context = getServletContext();
