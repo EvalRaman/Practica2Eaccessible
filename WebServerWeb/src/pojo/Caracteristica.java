@@ -30,13 +30,9 @@ public class Caracteristica {
 		return codiCaracteristica;
 	}
 
-<<<<<<< HEAD
+
 	public void setCodiCaracteristica(int codiCaracteristica) {
 		this.codiCaracteristica = codiCaracteristica;
-=======
-	public void setCodiCaracteristica(int i) {
-		this.codiCaracteristica = i;
->>>>>>> branch 'Dev' of https://github.com/EvalRaman/Practica2Eaccessible.git
 	}
 
 	public String getNomCaracteristicaCA() {
@@ -75,13 +71,8 @@ public class Caracteristica {
 		return codiNivell;
 	}
 
-<<<<<<< HEAD
 	public void setCodiNivell(int codiNivell) {
 		this.codiNivell = codiNivell;
-=======
-	public void setCodiNivell(int i) {
-		this.codiNivell = i;
->>>>>>> branch 'Dev' of https://github.com/EvalRaman/Practica2Eaccessible.git
 	}
 	
 }

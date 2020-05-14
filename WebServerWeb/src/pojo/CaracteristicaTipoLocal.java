@@ -24,39 +24,24 @@ public class CaracteristicaTipoLocal {
 		return codicaracteristicatipolocal;
 	}
 
-<<<<<<< HEAD
 	public void setCodicaracteristicatipolocal(int codicaracteristicatipolocal) {
 		this.codicaracteristicatipolocal = codicaracteristicatipolocal;
-=======
-	public void setCodicaracteristicatipolocal(int i) {
-		this.codicaracteristicatipolocal = i;
->>>>>>> branch 'Dev' of https://github.com/EvalRaman/Practica2Eaccessible.git
 	}
 
 	public int getCodicaracteristica() {
 		return codicaracteristica;
 	}
 
-<<<<<<< HEAD
 	public void setCodicaracteristica(int codicaracteristica) {
 		this.codicaracteristica = codicaracteristica;
-=======
-	public void setCodicaracteristica(int i) {
-		this.codicaracteristica = i;
->>>>>>> branch 'Dev' of https://github.com/EvalRaman/Practica2Eaccessible.git
 	}
 
 	public int getCoditipolocal() {
 		return coditipolocal;
 	}
 
-<<<<<<< HEAD
 	public void setCoditipolocal(int coditipolocal) {
 		this.coditipolocal = coditipolocal;
-=======
-	public void setCoditipolocal(int i) {
-		this.coditipolocal = i;
->>>>>>> branch 'Dev' of https://github.com/EvalRaman/Practica2Eaccessible.git
 	}
 	
 }
