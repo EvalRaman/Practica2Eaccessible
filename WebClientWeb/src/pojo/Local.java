@@ -14,7 +14,7 @@ public class Local {
 	private String verificat;
 	
 	public Local(	int codiLocal, int codiTipoLocal, int codiCarrer, 
-					String nomCarrer, String nomVia, int numero,	String nomLocal,
+					String nomCarrer, String nomVia, int numero, String nomLocal,
 					String observacions, String verificat) {
 		
 		this.codiLocal = codiLocal;

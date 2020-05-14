@@ -1,7 +1,6 @@
-package pojo;
+package classes;
 
-
-public class Local {
+public class InfoLocal {
 	
 	private int codiLocal;
 	private int codiTipoLocal;
@@ -13,25 +12,14 @@ public class Local {
 	private String observacions;
 	private String verificat;
 	
-	public Local(	int codiLocal, int codiTipoLocal, int codiCarrer, 
-					String nomCarrer, String nomVia, int numero,	String nomLocal,
-					String observacions, String verificat) {
-		
-		this.codiLocal = codiLocal;
-		this.codiTipoLocal = codiTipoLocal;
-		this.codiCarrer = codiCarrer;
-		this.nomCarrer = nomCarrer;
-		this.nomVia = nomVia;
-		this.numero = numero;
-		this.nomLocal = nomLocal;
-		this.observacions = observacions;
-		this.verificat = verificat;
-	}
+	private String nomTipoLocalCA;
+	private String nomTipoLocalES;
+	private String nomTipoLocalEN;
 	
 	public int getCodiLocal() {
 		return codiLocal;
 	}
-
+	
 	public void setCodiLocal(int codiLocal) {
 		this.codiLocal = codiLocal;
 	}
@@ -99,5 +87,29 @@ public class Local {
 	public void setVerificat(String verificat) {
 		this.verificat = verificat;
 	}
-	
+
+	public String getNomTipoLocalCA() {
+		return nomTipoLocalCA;
+	}
+
+	public void setNomTipoLocalCA(String nomTipoLocalCA) {
+		this.nomTipoLocalCA = nomTipoLocalCA;
+	}
+
+	public String getNomTipoLocalES() {
+		return nomTipoLocalES;
+	}
+
+	public void setNomTipoLocalES(String nomTipoLocalES) {
+		this.nomTipoLocalES = nomTipoLocalES;
+	}
+
+	public String getNomTipoLocalEN() {
+		return nomTipoLocalEN;
+	}
+
+	public void setNomTipoLocalEN(String nomTipoLocalEN) {
+		this.nomTipoLocalEN = nomTipoLocalEN;
+	}
+
 }

@@ -1,6 +1,5 @@
 package webservice;
 
-import Exceptions.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,19 +7,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.activation.DataSource;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
+import Exceptions.ErrorException;
 import pojo.Accessibilitat;
 import pojo.Caracteristica;
+import pojo.CaracteristicaTipoLocal;
 import pojo.Local;
+import pojo.TipoLocal;
 
 @WebService
 public class WebServiceLocal {
-
-    @WebMethod
+    
+	@WebMethod
 	public void altaLocal(Local local, List<Accessibilitat> accessibilitat) throws ErrorException {
 		String strEstat = new String();
 		Connection connection = null;
@@ -36,12 +38,12 @@ public class WebServiceLocal {
 				else{
 					connection = ((Statement) ds).getConnection();
 
-					String query = "insert into eAccessible.Local (codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat) values('"+codiTipoLocal+"','"+codiCarrer+"','"+nomCarrer+"','"+nomVia+"','"+numero+"','"+nomLocal+"','"+observacions+"','"+verificat+"')");
+					String query = "insert into eAccessible.Local (codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat) values('"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"','"+local.getNomLocal()+"','"+local.getObservacions()+"','"+local.getVerificat()+"')";
 					Statement stm = connection.createStatement();
 					stm.executeUpdate(query);
 
 					for(int i=0; i<accessibilitat.size(); i=i+1) {
-						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiaccessibilitat()+"','"+accessibilitat.get(i).getCodilocal()+"','"+accessibilitat.get(i).getCodicaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
+						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
 					}
 
 					connection.close();
@@ -63,10 +65,10 @@ public class WebServiceLocal {
 		}
 	}
 
-    @WebMethod
-    public void baixaLocal(int codiLocal) throws ErrorException {
-        String strEstat = new String();
-        Connection connection = null;
+	@WebMethod
+	public void baixaLocal(int codiLocal) throws ErrorException {
+		String strEstat = new String();
+		Connection connection = null;
 
         try {
             InitialContext cxt = new InitialContext();
@@ -373,10 +375,10 @@ public class WebServiceLocal {
                     ResultSet rs = stm.executeQuery(query);
                     while (rs.next()) {
                         TipoLocal tipoLocal = new TipoLocal();
-                        tipoLocal.setCoditipolocal(rs.getInt("coditipolocal"));
-                        tipoLocal.setNomtipolocalca(rs.getString("nomtipolocalca"));
-                        tipoLocal.setNomtipolocales(rs.getString("nomtipolocales"));
-                        tipoLocal.setNomtipolocalen(rs.getString("nomtipolocalen"));
+                        tipoLocal.setCodiTipoLocal(rs.getInt("coditipolocal"));
+                        tipoLocal.setNomTipoLocalCA(rs.getString("nomtipolocalca"));
+                        tipoLocal.setNomTipoLocalES(rs.getString("nomtipolocales"));
+                        tipoLocal.setNomTipoLocalEN(rs.getString("nomtipolocalen"));
 
                         tipoLocalList.add(tipoLocal);
                     }
@@ -422,7 +424,7 @@ public class WebServiceLocal {
                         Local local = new Local();
                         local.setCodiTipoLocal(rs.getInt("coditipolocal"));
                         local.setCodiCarrer(rs.getInt("codicarrer"));
-                        local.setNomcarrer(rs.getString("nomcarrer"));
+                        local.setNomCarrer(rs.getString("nomcarrer"));
                         local.setNomVia(rs.getString("nomvia"));
                         local.setCodiLocal(rs.getInt("codilocal"));
                         local.setNomLocal(rs.getString("nomlocal"));
@@ -472,12 +474,12 @@ public class WebServiceLocal {
                     ResultSet rs = stm.executeQuery(query);
                     while (rs.next()) {
                         Local local = new Local();
-                        local.setCoditipolocal(rs.getInt("coditipolocal"));
-                        local.setCodicarrer(rs.getInt("codicarrer"));
-                        local.setNomcarrer(rs.getString("nomcarrer"));
-                        local.setNomvia(rs.getString("nomvia"));
-                        local.setCodilocal(rs.getInt("codilocal"));
-                        local.setNomlocal(rs.getString("nomlocal"));
+                        local.setCodiLocal(rs.getInt("coditipolocal"));
+                        local.setCodiCarrer(rs.getInt("codicarrer"));
+                        local.setNomCarrer(rs.getString("nomcarrer"));
+                        local.setNomVia(rs.getString("nomvia"));
+                        local.setCodiLocal(rs.getInt("codilocal"));
+                        local.setNomLocal(rs.getString("nomlocal"));
                         local.setNumero(rs.getInt("numero"));
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
@@ -571,12 +573,12 @@ public class WebServiceLocal {
                     ResultSet rs = stm.executeQuery(query);
                     rs.next();
 
-                    caracteristica.setCodicaracteristica(rs.getInt("codicaracteristica"));
+                    caracteristica.setCodiCaracteristica(rs.getInt("codicaracteristica"));
                     caracteristica.setNomCaracteristicaCA(rs.getString("nomcaracteristicaca"));
-                    caracteristica.setNomcaracteristicaes(rs.getString("nomcaracteristicaes"));
-                    caracteristica.setNomcaracteristicaen(rs.getString("nomcaracteristicaen"));
+                    caracteristica.setNomCaracteristicaES(rs.getString("nomcaracteristicaes"));
+                    caracteristica.setNomCaracteristicaEN(rs.getString("nomcaracteristicaen"));
                     caracteristica.setTipo(rs.getInt("tipo"));
-                    caracteristica.setCodinivell(rs.getInt("codinivell"));
+                    caracteristica.setCodiNivell(rs.getInt("codinivell"));
 
                     connection.close();
                     stm.close();
@@ -639,11 +641,11 @@ public class WebServiceLocal {
     }
 
     @WebMethod
-    public List<CaracteristicaValor> infoCaracteristicaLocal(int codiLocal) throws ErrorException {
+    public List<Caracteristica> infoCaracteristicaLocal(int codiLocal) throws ErrorException {
         String strEstat = new String();
         Connection connection = null;
 
-        List<CaracteristicaValor> caracteristicaValorLlista = new ArrayList<CaracteristicaValor>();
+        List<Caracteristica> caracteristicaValorLlista = new ArrayList<CaracteristicaValor>();
 
         try {
             InitialContext cxt = new InitialContext();
