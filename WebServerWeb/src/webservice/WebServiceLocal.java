@@ -10,6 +10,8 @@ public class WebServiceLocal {
     
 	@WebMethod
 	public void altaLocal(Local local, List<Accessibilitat> accessibilitat) throws ExceptionController {
+		String strEstat = new String();
+		Connection connection = null;
 
 		try{
 			InitialContext cxt = new InitialContext();
