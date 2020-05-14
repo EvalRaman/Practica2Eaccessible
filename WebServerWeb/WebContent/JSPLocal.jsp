@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Creació Local</title>
+<title>Creacio Local</title>
 </head>
 
 <body>

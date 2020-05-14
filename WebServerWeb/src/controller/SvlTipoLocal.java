@@ -38,7 +38,7 @@ public class SvlTipoLocal extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		doGet(request, response);
+		doFer(request, response);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class SvlTipoLocal extends HttpServlet {
 		try
 		{
 			ServletContext context = getServletContext();
-			RequestDispatcher rd = context.getRequestDispatcher("/JSPNivell");
+			RequestDispatcher rd = context.getRequestDispatcher("/JSPTipoLocal");
 			rd.forward(request, response);
 		}
 		
