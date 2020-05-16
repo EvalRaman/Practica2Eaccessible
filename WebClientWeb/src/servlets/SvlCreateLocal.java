@@ -52,15 +52,8 @@ public class SvlCreateLocal extends HttpServlet {
 	}
 	
 	private void doFer(HttpServletRequest request, HttpServletResponse response) {
-<<<<<<< HEAD:WebClientWeb/src/servlets/SvlAltaLocal.java
 
 		Local local = new webservice.Local();
-=======
-		
-		Local local = new webservice.Local();
-		Accessibilitat[] accessibilitats = null;
-		
->>>>>>> 2a5380613cfa316f3472da1fb0456e77d444a7ed:WebClientWeb/src/servlets/SvlCreateLocal.java
 		int codiLocal = Integer.parseInt(request.getParameter("codiLocal"));
 		int codiTipoLocal = Integer.parseInt(request.getParameter("codiTipoLocal"));
 		int codiCarrer = Integer.parseInt(request.getParameter("codiCarrer"));
