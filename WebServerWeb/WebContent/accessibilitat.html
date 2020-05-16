@@ -4,14 +4,33 @@
 <meta charset="UTF-8">
 <title>Accessibilitat</title>
 </head>
+
 <body>
 
-<h1>Accessibilitat</h1>
-<form method="get" action="SvlAccessibilitat">
-
-<input type="submit" value="Accepta">
-
-</form>
-
+	<form method="post" action="SvlAccessibilitat">
+	
+	<label>Codi d'Accessibilitat :</label>
+	<input name="codiAccessibilitat" placeholder="Codi d'Accessibilitat" type="number">
+	<br>
+	
+	<label>Codi del Local :</label>
+	<input name="codiLocal" placeholder="Codi del Local" type="number">
+	<br>
+	
+	<label>Codi de la Caracteristica :</label>
+	<input name="codiCaracteristica" placeholder="Codi de la Caracteristica" type="number">
+	<br>
+	
+	<label>Valor :</label>
+	<input name="valor" placeholder="Valor" type="number">
+	<br>
+	
+	<label>Verificat:</label>
+	<input name="verificat" placeholder="S/N" type="text">
+	<br><br>
+	
+	<input type="submit" value="Accepta">
+	</form>
+	
 </body>
 </html>

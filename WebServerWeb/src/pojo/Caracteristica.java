@@ -6,7 +6,7 @@ public class Caracteristica {
 	private String nomCaracteristicaCA;
 	private String nomCaracteristicaES;
 	private String nomCaracteristicaEN;
-	private Integer tipo;
+	private int tipo;
 	private int codiNivell;
 	
 	public Caracteristica(	int codiCaracteristica, String nomCaracteristicaCA,
@@ -59,11 +59,11 @@ public class Caracteristica {
 		this.nomCaracteristicaEN = nomCaracteristicaEN;
 	}
 
-	public Integer getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Integer tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 

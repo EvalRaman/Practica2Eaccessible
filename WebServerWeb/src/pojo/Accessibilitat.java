@@ -1,17 +1,16 @@
 package pojo;
 
-import java.math.BigInteger;
 
 public class Accessibilitat {
 	
-	private BigInteger codiAccessibilitat;
-	private BigInteger codiLocal;
-	private BigInteger codiCaracteristica;
-	private BigInteger valor;
+	private int codiAccessibilitat;
+	private int codiLocal;
+	private int codiCaracteristica;
+	private int valor;
 	private String verificat;
 	
-	public Accessibilitat(	BigInteger codiAccessibilitat, BigInteger codiLocal, 
-							BigInteger codiCaracteristica, BigInteger valor, String verificat) {
+	public Accessibilitat(	int codiAccessibilitat, int codiLocal, 
+							int codiCaracteristica, int valor, String verificat) {
 		
 		this.setCodiAccessibilitat(codiAccessibilitat);
 		this.setCodiLocal(codiLocal);
@@ -21,35 +20,35 @@ public class Accessibilitat {
 		
 	}
 
-	public BigInteger getCodiAccessibilitat() {
+	public int getCodiAccessibilitat() {
 		return codiAccessibilitat;
 	}
 
-	public void setCodiAccessibilitat(BigInteger codiAccessibilitat) {
+	public void setCodiAccessibilitat(int codiAccessibilitat) {
 		this.codiAccessibilitat = codiAccessibilitat;
 	}
 
-	public BigInteger getCodiLocal() {
+	public int getCodiLocal() {
 		return codiLocal;
 	}
 
-	public void setCodiLocal(BigInteger codiLocal) {
+	public void setCodiLocal(int codiLocal) {
 		this.codiLocal = codiLocal;
 	}
 
-	public BigInteger getCodiCaracteristica() {
+	public int getCodiCaracteristica() {
 		return codiCaracteristica;
 	}
 
-	public void setCodiCaracteristica(BigInteger codiCaracteristica) {
+	public void setCodiCaracteristica(int codiCaracteristica) {
 		this.codiCaracteristica = codiCaracteristica;
 	}
 
-	public BigInteger getValor() {
+	public int getValor() {
 		return valor;
 	}
 
-	public void setValor(BigInteger valor) {
+	public void setValor(int valor) {
 		this.valor = valor;
 	}
 

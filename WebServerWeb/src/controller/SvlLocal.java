@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import exceptions.ErrorException;
+import pojo.Accessibilitat;
 import pojo.Local;
 import webservice.WebServiceLocal;
 
@@ -41,7 +44,12 @@ public class SvlLocal extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		doFer(request, response);
+		try {
+			doFer(request, response);
+		} catch (ErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -51,14 +59,16 @@ public class SvlLocal extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void doFer(HttpServletRequest request, HttpServletResponse response) {
+	private void doFer(HttpServletRequest request, HttpServletResponse response) throws ErrorException {
 		
-		int codiLocal = Integer.parseInt(request.getParameter("codiLocal"));
-		int codiTipoLocal = Integer.parseInt(request.getParameter("codiTipoLocal"));
-		int codiCarrer = Integer.parseInt(request.getParameter("codiCarrer"));
+		String method;
+		
+		String codiLocal = request.getParameter("codiLocal");
+		String codiTipoLocal = request.getParameter("codiTipoLocal");
+		String codiCarrer = request.getParameter("codiCarrer");
 		String nomCarrer = request.getParameter("nomCarrer");
 		String nomVia = request.getParameter("nomVia");
-		int numero = Integer.parseInt(request.getParameter("numero"));
+		String numero = request.getParameter("numero");
 		String nomLocal = request.getParameter("nomLocal");
 		String observacions = request.getParameter("observacions");
 		String verificat = request.getParameter("verificat");
@@ -75,19 +85,66 @@ public class SvlLocal extends HttpServlet {
 		session.setAttribute("eAccessible.observacions", observacions);
 		session.setAttribute("eAccessible.verificat", verificat);
 		
-		Local local = new Local(codiLocal, codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat);
+		/*		
+		Local local = new Local(Integer.parseInt(codiLocal), Integer.parseInt(codiTipoLocal), Integer.parseInt(codiCarrer), nomCarrer, nomVia, Integer.parseInt(numero), nomLocal, observacions, verificat);
+		List<Accessibilitat> accessibilitats = null;
 		WebServiceLocal wsLocal = new WebServiceLocal();
 		wsLocal.altaLocal(local, accessibilitats);
-													
-		try
-		{
+		*/
+		
+		String strStatus = new String("Insert done");
+		InitialContext cxt;
+		
+		if(method.equals("insert") || method.equals("update")) {
+			
+			try {
+				cxt = new InitialContext();
+
+				if ( cxt != null ) {
+					DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
+							
+					if ( ds == null ) strStatus = "Error creating the datasource";
+					else {	
+						Connection connection = ds.getConnection();
+						Statement stm = connection.createStatement();
+						stm.executeUpdate("insert into eAccessible (codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat) values('"+codiTipoLocal+"','"+codiCarrer+"','"+nomCarrer+"','"+nomVia+"','"+numero+"','"+nomLocal+"','"+observacions+"','"+verificat+"')");
+						connection.close();
+						stm.close();
+					}
+				}   
+			}
+			catch (NamingException e1) { e1.printStackTrace(); } 
+			catch (SQLException e) { e.printStackTrace(); }
+		}
+		else {
+			try {
+				cxt = new InitialContext();
+
+				if ( cxt != null ) {
+					DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
+							
+					if ( ds == null ) strStatus = "Error creating the datasource";
+					else {	
+						Connection connection = ds.getConnection();
+						Statement stm = connection.createStatement();
+						stm.executeQuery("\"delete from eAccessible.local where codilocal=" + codiLocal+")");
+						connection.close();
+						stm.close();
+					}
+				}   
+			}
+			catch (NamingException e1) { e1.printStackTrace(); } 
+			catch (SQLException e) { e.printStackTrace(); }
+		}
+		
+		session.setAttribute("eAccessible.Status", strStatus);
+				
+		try	{
 			ServletContext context = getServletContext();
 			RequestDispatcher rd = context.getRequestDispatcher("/JSPLocal");
 			rd.forward(request, response);
 		}
-		
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
