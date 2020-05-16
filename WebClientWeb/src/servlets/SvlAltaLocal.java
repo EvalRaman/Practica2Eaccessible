@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import webservice.Local;
+import webservice.WebServiceLocal;
+
 /**
  * Servlet implementation class SvlLocal
  */
@@ -42,7 +45,8 @@ public class SvlAltaLocal extends HttpServlet {
 	}
 	
 	private void doFer(HttpServletRequest request, HttpServletResponse response) {
-		
+
+		Local local = new webservice.Local();
 		int codiLocal = Integer.parseInt(request.getParameter("codiLocal"));
 		int codiTipoLocal = Integer.parseInt(request.getParameter("codiTipoLocal"));
 		int codiCarrer = Integer.parseInt(request.getParameter("codiCarrer"));
