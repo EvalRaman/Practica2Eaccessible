@@ -12,7 +12,7 @@ import javax.jws.WebService;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import Exceptions.ErrorException;
+import exceptions.ErrorException;
 import pojo.Accessibilitat;
 import pojo.Caracteristica;
 import pojo.CaracteristicaTipoLocal;
