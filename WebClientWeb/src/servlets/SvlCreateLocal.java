@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -10,21 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.rpc.ServiceException;
+
+import webservice.Accessibilitat;
+import webservice.Local;
+import webservice.WebServiceLocal;
+import webservice.WebServiceLocalServiceLocator;
 
 import webservice.Local;
 import webservice.WebServiceLocal;
 
 /**
- * Servlet implementation class SvlLocal
+ * Servlet implementation class SvlCreateLocal
  */
-@WebServlet("/SvlLocal")
-public class SvlAltaLocal extends HttpServlet {
+@WebServlet("/SvlCreateLocal")
+public class SvlCreateLocal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SvlAltaLocal() {
+    public SvlCreateLocal() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,8 +52,15 @@ public class SvlAltaLocal extends HttpServlet {
 	}
 	
 	private void doFer(HttpServletRequest request, HttpServletResponse response) {
+<<<<<<< HEAD:WebClientWeb/src/servlets/SvlAltaLocal.java
 
 		Local local = new webservice.Local();
+=======
+		
+		Local local = new webservice.Local();
+		Accessibilitat[] accessibilitats = null;
+		
+>>>>>>> 2a5380613cfa316f3472da1fb0456e77d444a7ed:WebClientWeb/src/servlets/SvlCreateLocal.java
 		int codiLocal = Integer.parseInt(request.getParameter("codiLocal"));
 		int codiTipoLocal = Integer.parseInt(request.getParameter("codiTipoLocal"));
 		int codiCarrer = Integer.parseInt(request.getParameter("codiCarrer"));
@@ -59,6 +73,18 @@ public class SvlAltaLocal extends HttpServlet {
 				
 		HttpSession session = request.getSession(true);
 		
+		/*
+		local.setCodiLocal(codiLocal);
+		local.setCodiTipoLocal(codiTipoLocal);
+		local.setCodiCarrer(codiCarrer);
+		local.setNomCarrer(nomCarrer);
+		local.setNomVia(nomVia);
+		local.setNumero(numero);
+		local.setNomLocal(nomLocal);
+		local.setObservacions(observacions);
+		local.setVerificat(verificat);
+		*/
+		
 		session.setAttribute("eAccesible.codiLocal", codiLocal);
 		session.setAttribute("eAccessible.codiTipoLocal", codiTipoLocal);
 		session.setAttribute("eAccessible.codiCarrer", codiCarrer);
@@ -69,7 +95,14 @@ public class SvlAltaLocal extends HttpServlet {
 		session.setAttribute("eAccessible.observacions", observacions);
 		session.setAttribute("eAccessible.verificat", verificat);
 		
-		// TODO
+		try {
+			WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
+			WebServiceLocal port = service.getWebServiceLocalPort();
+			port.altaLocal(local, accessibilitats);
+		}
+		catch(RemoteException | ServiceException e) {
+			e.printStackTrace();
+		}
 		
 		try
 		{
