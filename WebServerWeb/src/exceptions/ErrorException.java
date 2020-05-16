@@ -1,6 +1,12 @@
 package exceptions;
+
 public class ErrorException extends Exception {
-    public ErrorException(String errorMessage) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ErrorException(String errorMessage) {
         super(errorMessage);
     }
 }

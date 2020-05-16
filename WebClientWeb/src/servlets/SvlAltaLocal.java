@@ -66,7 +66,6 @@ public class SvlAltaLocal extends HttpServlet {
 		session.setAttribute("eAccessible.verificat", verificat);
 		
 		// TODO
-		// Crida al webservice
 		
 		try
 		{

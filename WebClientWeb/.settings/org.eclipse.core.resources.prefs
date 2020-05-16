@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/webservice/Accessibilitat.java=UTF-8
+encoding//src/webservice/Caracteristica.java=UTF-8
+encoding//src/webservice/CaracteristicaTipoLocal.java=UTF-8
+encoding//src/webservice/ErrorException.java=UTF-8
+encoding//src/webservice/Local.java=UTF-8
+encoding//src/webservice/TipoLocal.java=UTF-8
+encoding//src/webservice/WebServiceLocal.java=UTF-8
+encoding//src/webservice/WebServiceLocalService.java=UTF-8
+encoding//src/webservice/WebServiceLocalServiceLocator.java=UTF-8
+encoding//src/webservice/WebServiceLocalServiceSoapBindingStub.java=UTF-8

@@ -90,7 +90,7 @@ public class SvlLocal extends HttpServlet {
 		List<Accessibilitat> accessibilitats = null;
 		WebServiceLocal wsLocal = new WebServiceLocal();
 		wsLocal.altaLocal(local, accessibilitats);
-		*/
+		
 		
 		String strStatus = new String("Insert done");
 		InitialContext cxt;
@@ -138,7 +138,7 @@ public class SvlLocal extends HttpServlet {
 		}
 		
 		session.setAttribute("eAccessible.Status", strStatus);
-				
+		*/		
 		try	{
 			ServletContext context = getServletContext();
 			RequestDispatcher rd = context.getRequestDispatcher("/JSPLocal");
