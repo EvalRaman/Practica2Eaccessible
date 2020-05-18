@@ -13,7 +13,7 @@ public class Local {
 	private String observacions;
 	private String verificat;
 	
-	public Local(	int codiLocal, int codiTipoLocal, int codiCarrer, 
+	/*public Local(	int codiLocal, int codiTipoLocal, int codiCarrer, 
 					String nomCarrer, String nomVia, int numero,	String nomLocal,
 					String observacions, String verificat) {
 		
@@ -26,7 +26,7 @@ public class Local {
 		this.nomLocal = nomLocal;
 		this.observacions = observacions;
 		this.verificat = verificat;
-	}
+	}*/
 	
 	public Local() {
 		// TODO Auto-generated constructor stub
