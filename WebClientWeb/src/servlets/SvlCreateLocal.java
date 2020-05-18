@@ -46,8 +46,13 @@ public class SvlCreateLocal extends HttpServlet {
 	
 	private void doFer(HttpServletRequest request, HttpServletResponse response) {
 
+<<<<<<< HEAD
 		HttpSession session;
 		
+=======
+		Local local = new webservice.Local();
+		int codiLocal = Integer.parseInt(request.getParameter("codiLocal"));
+>>>>>>> branch 'Dev' of https://github.com/EvalRaman/Practica2Eaccessible.git
 		int codiTipoLocal = Integer.parseInt(request.getParameter("codiTipoLocal"));
 		int codiCarrer = Integer.parseInt(request.getParameter("codiCarrer"));
 		String nomCarrer = request.getParameter("nomCarrer");
