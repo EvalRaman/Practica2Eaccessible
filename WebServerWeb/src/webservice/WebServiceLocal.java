@@ -36,27 +36,15 @@ public class WebServiceLocal {
 					throw new ErrorException(strEstat);
 				}
 				else{
-<<<<<<< HEAD
-                    connection = ds.getConnection();
-                    local.setCodiLocal(codiLocalLliure());
-					String query = "insert into eAccessible.local (codilocal, coditipolocal, codicarrer, nomcarrer, nomvia, numero, nomlocal, observacions, verificat) values('"+local.getCodiLocal() +"','"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"','"+local.getNomLocal()+"','"+local.getObservacions()+"','"+local.getVerificat()+"');";
-=======
 					connection = ds.getConnection();
 					String query = "insert into eAccessible.local (codilocal,coditipolocal,codicarrer,nomcarrer,nomvia,numero,nomlocal,observacions,verificat) values('"+local.getCodiLocal()+"','"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"','"+local.getNomLocal()+"','"+local.getObservacions()+"','"+local.getVerificat()+"')";					
->>>>>>> f1a644bcf4186e6b7d1662126e71f8d69aa0c3e1
 					Statement stm = connection.createStatement();
 					stm.executeUpdate(query);
 										
 					for(int i=0; i<accessibilitat.size(); i=i+1) {
-<<<<<<< HEAD
-						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"');");
-					}
-
-=======
 						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
 					}		
 					
->>>>>>> f1a644bcf4186e6b7d1662126e71f8d69aa0c3e1
 					connection.close();
 					stm.close();
 				}
