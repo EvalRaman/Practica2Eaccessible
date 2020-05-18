@@ -1,38 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="pojo.Local"%>
-<%@page import="classes.InfoLocal"%>
+<%@ page isELIgnored="false" %>
+<%@ page import="webservice.Caracteristica"%>
+<%@ page import="webservice.TipoLocal"%>
+<%@ page import="webservice.CaracteristicaTipoLocal"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Locals eAccessible</title>
+	<meta charset="UTF-8">    
+    <title> eAccessible </title>
 </head>
 
 <body>
 	<div data-role="navbar" id="navbar-1">
 		<ul>
-			<li><a href="Cerca.jsp"> Cerca </a></li>
-			<li><a href="CreateLocal.jsp"> Crear Local </a></li>
+			<li><a href="Cerca.jsp">Cerca</a></li>
+			<li><a href="AltaLocal.jsp">Alta d'un local</a></li>
 		</ul>
 	</div>
 	
 	
-	<% InfoLocal[] locals = (InfoLocal[]) session.getAttribute("Locals");%> 
-	<%if (locals == null){ %>
-		<h3>No s'ha trobat cap local!</h3>	
-	<%} else {%>
-		<h1>Locals:</h1>
-		<%for (int i=0; i<locals.length; i++){%>
-				<li>
-					<a  href="Cerca.jsp" ><%=locals[i].getNomLocal()%>, <%=locals[i].getNomTipoLocalCA()%>, <%=locals[i].getNomVia()%>, <%=locals[i].getNomCarrer()%>, nº<%=locals[i].getNumero()%></a>
-				</li>
-		<%}%>
-	 <%}%>	
+	<%
+	webservice.TipoLocal[] tipoLocal = null;
 	
+	try{
+		webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
+		webservice.WebServiceLocal port = service.getWebServiceLocalPort();
+		tipoLocal = port.cercaTipoLocal();
+	}
+	catch (Exception e) { e.printStackTrace();}
+	%>
+	<br>
+	<form method="post" action="SvlBeforeCreate">
+	<h2>Tipus de local a donar d'alta:</h2>
+	
+	<select name="codiTipoLocal"> 
+	<%for (int i=0; i<tipoLocal.length; i++){%>
+		<option value="<%=tipoLocal[i].getCodiTipoLocal()%>"> <%=tipoLocal[i].getNomTipoLocalCA()%> </option>
+	<%} %>	
+	</select>
+
+	
+	<br>
+	<input type="submit" value="Seguir">
+	</form>
+
 </body>
 </html>

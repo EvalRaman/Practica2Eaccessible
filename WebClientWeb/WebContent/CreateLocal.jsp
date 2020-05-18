@@ -10,12 +10,15 @@
 
 <body>
 
-	<form method="post" action="SvlLocal">
+	<form method="post" action="SvlCreateLocal">
 	
-		<label>Codi tipus de local :</label>
-		<input name="codiTipoLocal" placeholder="Codi del local" type="number">
-		<br>
-		
+	<%
+	String codiTipoLocal = (String) session.getAttribute("codiTipoLocal");
+	webservice.Caracteristica[] caracteristiques = (webservice.Caracteristica[]) session.getAttribute("caracteristiques");
+	%>
+	
+		<input type="hidden" value=<%=codiTipoLocal%> name="codiTipoLocal">
+			
 		<label>Codi del carrer :</label>
 		<input name="codiCarrer" placeholder="Codi del carrer" type="number">
 		<br>
@@ -40,9 +43,24 @@
 		<textarea name="observacions" placeholder="Observacions"></textarea>
 		<br>
 		
-		<label>Verificat:</label>
-		<input name="verificat" placeholder="S/N" type="text">
-		<br><br>
+		<label>Accessibilitat</label>
+		Puntua les seguents caracteristiques on 0 és la puntuació més baixa i 5 la més alta
+		<br>
+		<input type="hidden" name="caracteristiquesLength" value="<%=caracteristiques.length%>">
+		<br>
+		<%for(int i = 0; i < caracteristiques.length; i++) { %>
+		    <input type="hidden" name="codiCaracteristica<%=i%>" value="<%=caracteristiques[i].getCodiCaracteristica()%>">
+		    <%=caracteristiques[i].getNomCaracteristicaCA() %>: 
+		    <select type="text" name="valor<%=i%>">
+		    <option value="0">0</option>
+		    <option value="1">1</option>
+		    <option value="2">2</option>
+		    <option value="3">3</option>
+		    <option value="4">4</option>
+		    <option value="5">5</option>
+		    </select>
+		    <br>
+		<%}%>
 		
 		<input type="submit" value="Accepta">
 	</form>

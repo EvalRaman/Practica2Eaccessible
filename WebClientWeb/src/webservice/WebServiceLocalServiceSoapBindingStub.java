@@ -25,11 +25,11 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("infoCaracteristicaTipoLocal");
+        oper.setName("caracteristiquesPerCodiLocal");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "caracteristicaTipoLocal"));
-        oper.setReturnClass(webservice.CaracteristicaTipoLocal[].class);
+        oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "caracteristica"));
+        oper.setReturnClass(webservice.Caracteristica[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -91,10 +91,12 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         _operations[3] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("validaLocal");
+        oper.setName("localsPerTipoLocal");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
+        oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "local"));
+        oper.setReturnClass(webservice.Local[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         oper.addFault(new org.apache.axis.description.FaultDesc(
@@ -106,10 +108,7 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         _operations[4] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("infoLocalPerNomLocal");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        param.setOmittable(true);
-        oper.addParameter(param);
+        oper.setName("localsNoVerificats");
         oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "local"));
         oper.setReturnClass(webservice.Local[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
@@ -124,22 +123,7 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         _operations[5] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("localnoVerificat");
-        oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "local"));
-        oper.setReturnClass(webservice.Local[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
-        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        oper.addFault(new org.apache.axis.description.FaultDesc(
-                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"),
-                      "webservice.ErrorException",
-                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
-                      true
-                     ));
-        _operations[6] = oper;
-
-        oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("altaLocal");
+        oper.setName("crearLocal");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://webservice/", "local"), webservice.Local.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
@@ -155,17 +139,29 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
                       new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
                       true
                      ));
+        _operations[6] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("eliminarLocal");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        oper.addFault(new org.apache.axis.description.FaultDesc(
+                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"),
+                      "webservice.ErrorException",
+                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
+                      true
+                     ));
         _operations[7] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("infoLocalPerNomLocalICodiTipoLocal");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        param.setOmittable(true);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg1"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.setName("localPerCodiLocal");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "local"));
-        oper.setReturnClass(webservice.Local[].class);
+        oper.setReturnClass(webservice.Local.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -178,12 +174,10 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         _operations[8] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("infoLocalPerTipoLocal");
+        oper.setName("verificarLocal");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "local"));
-        oper.setReturnClass(webservice.Local[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         oper.addFault(new org.apache.axis.description.FaultDesc(
@@ -200,38 +194,6 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("baixaLocal");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
-        oper.addParameter(param);
-        oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
-        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        oper.addFault(new org.apache.axis.description.FaultDesc(
-                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"),
-                      "webservice.ErrorException",
-                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
-                      true
-                     ));
-        _operations[10] = oper;
-
-        oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("infoCaracteristicaLocal");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
-        oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "caracteristica"));
-        oper.setReturnClass(webservice.Caracteristica[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
-        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        oper.addFault(new org.apache.axis.description.FaultDesc(
-                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"),
-                      "webservice.ErrorException",
-                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
-                      true
-                     ));
-        _operations[11] = oper;
-
-        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("codiAccessibilitatLliure");
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         oper.setReturnClass(int.class);
@@ -244,7 +206,7 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
                       new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
                       true
                      ));
-        _operations[12] = oper;
+        _operations[10] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("cercaTipoLocal");
@@ -259,14 +221,52 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
                       new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
                       true
                      ));
+        _operations[11] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("caracteristiquesTipoLocal");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "caracteristicaTipoLocal"));
+        oper.setReturnClass(webservice.CaracteristicaTipoLocal[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        oper.addFault(new org.apache.axis.description.FaultDesc(
+                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"),
+                      "webservice.ErrorException",
+                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
+                      true
+                     ));
+        _operations[12] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("localsPerNomLocal");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setOmittable(true);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "local"));
+        oper.setReturnClass(webservice.Local[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        oper.addFault(new org.apache.axis.description.FaultDesc(
+                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"),
+                      "webservice.ErrorException",
+                      new javax.xml.namespace.QName("http://webservice/", "ErrorException"), 
+                      true
+                     ));
         _operations[13] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("infoLocalPerCodiLocal");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.setName("localsPerNomLocalICodiTipoLocal");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setOmittable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg1"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://webservice/", "local"));
-        oper.setReturnClass(webservice.Local.class);
+        oper.setReturnClass(webservice.Local[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -417,7 +417,7 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         }
     }
 
-    public webservice.CaracteristicaTipoLocal[] infoCaracteristicaTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
+    public webservice.Caracteristica[] caracteristiquesPerCodiLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -429,7 +429,7 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "infoCaracteristicaTipoLocal"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "caracteristiquesPerCodiLocal"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -441,9 +441,9 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         else {
             extractAttachments(_call);
             try {
-                return (webservice.CaracteristicaTipoLocal[]) _resp;
+                return (webservice.Caracteristica[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (webservice.CaracteristicaTipoLocal[]) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.CaracteristicaTipoLocal[].class);
+                return (webservice.Caracteristica[]) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.Caracteristica[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -585,7 +585,7 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
 }
     }
 
-    public void validaLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
+    public webservice.Local[] localsPerTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -597,46 +597,11 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "validaLocal"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "localsPerTipoLocal"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
  try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(arg0)});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        extractAttachments(_call);
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-    if (axisFaultException.detail != null) {
-        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
-              throw (java.rmi.RemoteException) axisFaultException.detail;
-         }
-        if (axisFaultException.detail instanceof webservice.ErrorException) {
-              throw (webservice.ErrorException) axisFaultException.detail;
-         }
-   }
-  throw axisFaultException;
-}
-    }
-
-    public webservice.Local[] infoLocalPerNomLocal(java.lang.String arg0) throws java.rmi.RemoteException, webservice.ErrorException {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[5]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "infoLocalPerNomLocal"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
@@ -662,19 +627,19 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
 }
     }
 
-    public webservice.Local[] localnoVerificat() throws java.rmi.RemoteException, webservice.ErrorException {
+    public webservice.Local[] localsNoVerificats() throws java.rmi.RemoteException, webservice.ErrorException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[6]);
+        _call.setOperation(_operations[5]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "localnoVerificat"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "localsNoVerificats"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -704,19 +669,19 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
 }
     }
 
-    public void altaLocal(webservice.Local arg0, webservice.Accessibilitat[] arg1) throws java.rmi.RemoteException, webservice.ErrorException {
+    public void crearLocal(webservice.Local arg0, webservice.Accessibilitat[] arg1) throws java.rmi.RemoteException, webservice.ErrorException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[7]);
+        _call.setOperation(_operations[6]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "altaLocal"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "crearLocal"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -739,103 +704,19 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
 }
     }
 
-    public webservice.Local[] infoLocalPerNomLocalICodiTipoLocal(java.lang.String arg0, int arg1) throws java.rmi.RemoteException, webservice.ErrorException {
+    public void eliminarLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[8]);
+        _call.setOperation(_operations[7]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "infoLocalPerNomLocalICodiTipoLocal"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0, new java.lang.Integer(arg1)});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (webservice.Local[]) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (webservice.Local[]) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.Local[].class);
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-    if (axisFaultException.detail != null) {
-        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
-              throw (java.rmi.RemoteException) axisFaultException.detail;
-         }
-        if (axisFaultException.detail instanceof webservice.ErrorException) {
-              throw (webservice.ErrorException) axisFaultException.detail;
-         }
-   }
-  throw axisFaultException;
-}
-    }
-
-    public webservice.Local[] infoLocalPerTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[9]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "infoLocalPerTipoLocal"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(arg0)});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (webservice.Local[]) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (webservice.Local[]) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.Local[].class);
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-    if (axisFaultException.detail != null) {
-        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
-              throw (java.rmi.RemoteException) axisFaultException.detail;
-         }
-        if (axisFaultException.detail instanceof webservice.ErrorException) {
-              throw (webservice.ErrorException) axisFaultException.detail;
-         }
-   }
-  throw axisFaultException;
-}
-    }
-
-    public void baixaLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[10]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "baixaLocal"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "eliminarLocal"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -858,19 +739,19 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
 }
     }
 
-    public webservice.Caracteristica[] infoCaracteristicaLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
+    public webservice.Local localPerCodiLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[11]);
+        _call.setOperation(_operations[8]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "infoCaracteristicaLocal"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "localPerCodiLocal"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -882,11 +763,46 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         else {
             extractAttachments(_call);
             try {
-                return (webservice.Caracteristica[]) _resp;
+                return (webservice.Local) _resp;
             } catch (java.lang.Exception _exception) {
-                return (webservice.Caracteristica[]) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.Caracteristica[].class);
+                return (webservice.Local) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.Local.class);
             }
         }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+    if (axisFaultException.detail != null) {
+        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
+              throw (java.rmi.RemoteException) axisFaultException.detail;
+         }
+        if (axisFaultException.detail instanceof webservice.ErrorException) {
+              throw (webservice.ErrorException) axisFaultException.detail;
+         }
+   }
+  throw axisFaultException;
+}
+    }
+
+    public void verificarLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[9]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "verificarLocal"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(arg0)});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        extractAttachments(_call);
   } catch (org.apache.axis.AxisFault axisFaultException) {
     if (axisFaultException.detail != null) {
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
@@ -905,7 +821,7 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[12]);
+        _call.setOperation(_operations[10]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -947,7 +863,7 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[13]);
+        _call.setOperation(_operations[11]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -984,19 +900,19 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
 }
     }
 
-    public webservice.Local infoLocalPerCodiLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
+    public webservice.CaracteristicaTipoLocal[] caracteristiquesTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[14]);
+        _call.setOperation(_operations[12]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "infoLocalPerCodiLocal"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "caracteristiquesTipoLocal"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -1008,9 +924,93 @@ public class WebServiceLocalServiceSoapBindingStub extends org.apache.axis.clien
         else {
             extractAttachments(_call);
             try {
-                return (webservice.Local) _resp;
+                return (webservice.CaracteristicaTipoLocal[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (webservice.Local) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.Local.class);
+                return (webservice.CaracteristicaTipoLocal[]) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.CaracteristicaTipoLocal[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+    if (axisFaultException.detail != null) {
+        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
+              throw (java.rmi.RemoteException) axisFaultException.detail;
+         }
+        if (axisFaultException.detail instanceof webservice.ErrorException) {
+              throw (webservice.ErrorException) axisFaultException.detail;
+         }
+   }
+  throw axisFaultException;
+}
+    }
+
+    public webservice.Local[] localsPerNomLocal(java.lang.String arg0) throws java.rmi.RemoteException, webservice.ErrorException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[13]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "localsPerNomLocal"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (webservice.Local[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (webservice.Local[]) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.Local[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+    if (axisFaultException.detail != null) {
+        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
+              throw (java.rmi.RemoteException) axisFaultException.detail;
+         }
+        if (axisFaultException.detail instanceof webservice.ErrorException) {
+              throw (webservice.ErrorException) axisFaultException.detail;
+         }
+   }
+  throw axisFaultException;
+}
+    }
+
+    public webservice.Local[] localsPerNomLocalICodiTipoLocal(java.lang.String arg0, int arg1) throws java.rmi.RemoteException, webservice.ErrorException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[14]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservice/", "localsPerNomLocalICodiTipoLocal"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0, new java.lang.Integer(arg1)});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (webservice.Local[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (webservice.Local[]) org.apache.axis.utils.JavaUtils.convert(_resp, webservice.Local[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
