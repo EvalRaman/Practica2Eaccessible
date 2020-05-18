@@ -11,17 +11,10 @@
 <body>
 
 	<%
-	String codiTipoLocal = (String) session.getAttribute("eAccessible.codiTipoLocal");
-	String codiCarrer 	 = (String) session.getAttribute("eAccessible.codiCarrer");
-	String nomCarrer 	 = (String) session.getAttribute("eAccessible.nomCarrer");
-	String nomVia 		 = (String) session.getAttribute("eAccessible.nomVia");
-	String numero 		 = (String) session.getAttribute("eAccessible.numero");
-	String nomLocal 	 = (String) session.getAttribute("eAccessible.nomLocal");
-	String observacions	 = (String) session.getAttribute("eAccessible.observacions");
-	String verificat 	 = (String) session.getAttribute("eAccessible.verificat");
+	String nomLocal 	 = (String) session.getAttribute("nomLocal");
 	%>
 	
-	Local <%=nomLocal%> creat!
+	Local <%=nomLocal%> creat "correctament"!
 
 </body>
 

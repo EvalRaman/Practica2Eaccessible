@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -11,12 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.rpc.ServiceException;
 
 import webservice.Accessibilitat;
 import webservice.Local;
-import webservice.WebServiceLocal;
-import webservice.WebServiceLocalServiceLocator;
 
 /**
  * Servlet implementation class SvlCreateLocal
@@ -50,10 +46,6 @@ public class SvlCreateLocal extends HttpServlet {
 	
 	private void doFer(HttpServletRequest request, HttpServletResponse response) {
 		
-		Local local = new webservice.Local();
-		Accessibilitat[] accessibilitats = null;
-		
-		int codiLocal = Integer.parseInt(request.getParameter("codiLocal"));
 		int codiTipoLocal = Integer.parseInt(request.getParameter("codiTipoLocal"));
 		int codiCarrer = Integer.parseInt(request.getParameter("codiCarrer"));
 		String nomCarrer = request.getParameter("nomCarrer");
@@ -61,12 +53,34 @@ public class SvlCreateLocal extends HttpServlet {
 		int numero = Integer.parseInt(request.getParameter("numero"));
 		String nomLocal = request.getParameter("nomLocal");
 		String observacions = request.getParameter("observacions");
-		String verificat = request.getParameter("verificat");
-				
+		int caracteristiquesLength = Integer.parseInt(request.getParameter("caracteristiquesLength"));				
+		
+		String caracteristicaValor[][] = new String[caracteristiquesLength][2];
+		
+		for(int i = 0; i < caracteristiquesLength; i++){
+			caracteristicaValor[i][0] = request.getParameter("codiCaracteristica"+i);
+			caracteristicaValor[i][1] = request.getParameter("valor"+i);
+		}
+		
 		HttpSession session = request.getSession(true);
 		
-		/*
-		local.setCodiLocal(codiLocal);
+		int codiLocalLliure = 0;
+		int codiAccessibilitatLliure = 0;
+		
+		try{
+			webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
+			webservice.WebServiceLocal port = service.getWebServiceLocalPort();
+			codiLocalLliure = port.codiLocalLliure();
+			System.out.println("codilocallliure: "+ codiLocalLliure);
+			codiAccessibilitatLliure = port.codiAccessibilitatLliure();
+			
+		}
+		catch (Exception e) { e.printStackTrace();}
+				
+		Local local = new webservice.Local();
+		Accessibilitat[] accessibilitats = new webservice.Accessibilitat[caracteristiquesLength];
+		
+		local.setCodiLocal(codiLocalLliure);
 		local.setCodiTipoLocal(codiTipoLocal);
 		local.setCodiCarrer(codiCarrer);
 		local.setNomCarrer(nomCarrer);
@@ -74,39 +88,46 @@ public class SvlCreateLocal extends HttpServlet {
 		local.setNumero(numero);
 		local.setNomLocal(nomLocal);
 		local.setObservacions(observacions);
-		local.setVerificat(verificat);
-		*/
+		local.setVerificat("N");
 		
-		session.setAttribute("eAccesible.codiLocal", codiLocal);
-		session.setAttribute("eAccessible.codiTipoLocal", codiTipoLocal);
-		session.setAttribute("eAccessible.codiCarrer", codiCarrer);
-		session.setAttribute("eAccessible.nomCarrer", nomCarrer);
-		session.setAttribute("eAccessible.nomVia", nomVia);
-		session.setAttribute("eAccessible.numero", numero);
-		session.setAttribute("eAccessible.nomLocal", nomLocal);
-		session.setAttribute("eAccessible.observacions", observacions);
-		session.setAttribute("eAccessible.verificat", verificat);
+		System.out.println(local.getCodiLocal());
+		System.out.println(local.getCodiTipoLocal());
+		System.out.println(local.getCodiCarrer());
+		System.out.println(local.getNomCarrer());
+		System.out.println(local.getNomVia());
+		System.out.println(local.getNumero());
+		System.out.println(local.getNomLocal());
+		System.out.println(local.getObservacions());
+		
+		for(int i = 0; i < caracteristiquesLength; i++) {
+			accessibilitats[i] = new webservice.Accessibilitat();
+			
+			accessibilitats[i].setCodiLocal(codiLocalLliure);
+			accessibilitats[i].setCodiAccessibilitat(codiAccessibilitatLliure);
+			accessibilitats[i].setCodiCaracteristica(Integer.parseInt(caracteristicaValor[i][0]));
+			accessibilitats[i].setValor(Integer.parseInt(caracteristicaValor[i][1]));
+			accessibilitats[i].setVerificat("N");
+
+			codiAccessibilitatLliure = codiAccessibilitatLliure + 1;
+		}
 		
 		try {
-			WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
-			WebServiceLocal port = service.getWebServiceLocalPort();
+			webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
+			webservice.WebServiceLocal port = service.getWebServiceLocalPort();
 			port.altaLocal(local, accessibilitats);
 		}
-		catch(RemoteException | ServiceException e) {
-			e.printStackTrace();
-		}
+		catch (Exception e) { e.printStackTrace();}
 		
-		try
-		{
+		session.setAttribute("nomLocal", nomLocal);
+	
+		try {
 			ServletContext context = getServletContext();
 			RequestDispatcher rd = context.getRequestDispatcher("/JSPLocal");
 			rd.forward(request, response);
 		}
 		
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }

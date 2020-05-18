@@ -2,66 +2,6 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
   <display-name>WebServerWeb</display-name>
   <welcome-file-list>
-    <welcome-file>local.html</welcome-file>
+    <welcome-file>home.html</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>JSPLocal</display-name>
-    <servlet-name>JSPLocal</servlet-name>
-    <jsp-file>/JSPLocal.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSPLocal</servlet-name>
-    <url-pattern>/JSPLocal</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>JSPAccessibilitat</display-name>
-    <servlet-name>JSPAccessibilitat</servlet-name>
-    <jsp-file>/JSPAccessibilitat.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSPAccessibilitat</servlet-name>
-    <url-pattern>/JSPAccessibilitat</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>JSPCaracteristica</display-name>
-    <servlet-name>JSPCaracteristica</servlet-name>
-    <jsp-file>/JSPCaracteristica.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSPCaracteristica</servlet-name>
-    <url-pattern>/JSPCaracteristica</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>JSPCaracteristicaTipoLocal</display-name>
-    <servlet-name>JSPCaracteristicaTipoLocal</servlet-name>
-    <jsp-file>/JSPCaracteristicaTipoLocal.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSPCaracteristicaTipoLocal</servlet-name>
-    <url-pattern>/JSPCaracteristicaTipoLocal</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>JSPNivell</display-name>
-    <servlet-name>JSPNivell</servlet-name>
-    <jsp-file>/JSPNivell.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSPNivell</servlet-name>
-    <url-pattern>/JSPNivell</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>JSPTipoLocal</display-name>
-    <servlet-name>JSPTipoLocal</servlet-name>
-    <jsp-file>/JSPTipoLocal.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSPTipoLocal</servlet-name>
-    <url-pattern>/JSPTipoLocal</url-pattern>
-  </servlet-mapping>
 </web-app>

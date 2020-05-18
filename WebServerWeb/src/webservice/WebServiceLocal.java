@@ -23,7 +23,7 @@ import pojo.TipoLocal;
 public class WebServiceLocal {
     
 	@WebMethod
-	public void altaLocal(Local local, List<Accessibilitat> accessibilitat) throws ErrorException {
+	public void crearLocal(Local local, List<Accessibilitat> accessibilitat) throws ErrorException {
 		String strEstat = new String();
 		Connection connection = null;
 
@@ -37,15 +37,15 @@ public class WebServiceLocal {
 				}
 				else{
 					connection = ds.getConnection();
-                    String codiLocal =  String.valueOf(codiLocalLliure());
-					String query = "insert into eAccessible.Local (codiLocal, codiTipoLocal, codiCarrer, nomCarrer, nomVia, numero, nomLocal, observacions, verificat) values('"+codiLocal+"','"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"','"+local.getNomLocal()+"','"+local.getObservacions()+"','"+local.getVerificat()+"')";
+					String query = "insert into eAccessible.local (codilocal,coditipolocal,codicarrer,nomcarrer,nomvia,numero,nomlocal,observacions,verificat) values('"+local.getCodiLocal()+"','"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"',UPPER('"+local.getNomLocal()+"'),'"+local.getObservacions()+"','"+local.getVerificat()+"')";					
 					Statement stm = connection.createStatement();
 					stm.executeUpdate(query);
 
+					
 					for(int i=0; i<accessibilitat.size(); i=i+1) {
 						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
-					}
-
+					}		
+					
 					connection.close();
 					stm.close();
 				}
@@ -66,7 +66,7 @@ public class WebServiceLocal {
 	}
 
 	@WebMethod
-	public void baixaLocal(int codiLocal) throws ErrorException {
+	public void eliminarLocal(int codiLocal) throws ErrorException {
 		String strEstat = new String();
 		Connection connection = null;
 
@@ -106,7 +106,7 @@ public class WebServiceLocal {
 
     @WebMethod
 
-    public void validaLocal(int codiLocal) throws ErrorException {
+    public void verificarLocal(int codiLocal) throws ErrorException {
 
         String strEstat = new String();
         Connection connection = null;
@@ -147,7 +147,7 @@ public class WebServiceLocal {
     }
 
     @WebMethod
-    public List<Local> infoLocalPerNomLocalICodiTipoLocal(String nomLocal, int codiTipoLocal) throws ErrorException {
+    public List<Local> localsPerNomLocalICodiTipoLocal(String nomLocal, int codiTipoLocal) throws ErrorException {
         String strEstat = new String();
         Connection connection = null;
 
@@ -199,7 +199,7 @@ public class WebServiceLocal {
     }
 
     @WebMethod
-    public Local infoLocalPerCodiLocal(int codiLocal) throws ErrorException {
+    public Local localPerCodiLocal(int codiLocal) throws ErrorException {
         String strEstat = new String();
         Connection connection = null;
 
@@ -249,7 +249,7 @@ public class WebServiceLocal {
     }
 
     @WebMethod
-    public List<Local> infoLocalPerNomLocal(String nomLocal) throws ErrorException {
+    public List<Local> localsPerNomLocal(String nomLocal) throws ErrorException {
         String strEstat = new String();
         Connection connection = null;
 
@@ -301,7 +301,7 @@ public class WebServiceLocal {
     }
 
     @WebMethod
-    public List<Local> infoLocalPerTipoLocal(int codiTipoLocal) throws ErrorException {
+    public List<Local> localsPerTipoLocal(int codiTipoLocal) throws ErrorException {
         String strEstat = new String();
         Connection connection = null;
 
@@ -401,7 +401,7 @@ public class WebServiceLocal {
     }
 
     @WebMethod
-    public List<Local> localnoVerificat() throws ErrorException {
+    public List<Local> localsNoVerificats() throws ErrorException {
         String strEstat = new String();
         Connection connection = null;
 
@@ -504,7 +504,7 @@ public class WebServiceLocal {
     }
 
     @WebMethod
-    public List<CaracteristicaTipoLocal> infoCaracteristicaTipoLocal(int codiTipoLocal) throws ErrorException {
+    public List<CaracteristicaTipoLocal> caracteristiquesTipoLocal(int codiTipoLocal) throws ErrorException {
         String strEstat = new String();
         Connection connection = null;
 
@@ -641,7 +641,7 @@ public class WebServiceLocal {
     }
 
     @WebMethod
-    public List<Caracteristica> infoCaracteristicaLocal(int codiLocal) throws ErrorException {
+    public List<Caracteristica> caracteristiquesPerCodiLocal(int codiLocal) throws ErrorException {
         String strEstat = new String();
         Connection connection = null;
 

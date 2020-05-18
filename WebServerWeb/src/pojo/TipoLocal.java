@@ -7,16 +7,6 @@ public class TipoLocal {
 	private String nomTipoLocalES;
 	private String nomTipoLocalEN;
 	
-	public TipoLocal(	int codiTipoLocal, String nomTipoLocalCA, String nomTipoLocalES,
-						String nomTipoLocalEN) {
-		
-		this.setCodiTipoLocal(codiTipoLocal);
-		this.setNomTipoLocalCA(nomTipoLocalCA);
-		this.setNomTipoLocalES(nomTipoLocalES);
-		this.setNomTipoLocalEN(nomTipoLocalEN);
-		
-	}
-
 	public TipoLocal() {
 		// TODO Auto-generated constructor stub
 	}
