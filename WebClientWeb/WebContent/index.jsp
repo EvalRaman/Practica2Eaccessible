@@ -1,6 +1,9 @@
 <%@page import="webservice.WebServiceLocal"%>
+<%@page import="webservice.Local"%>
+<%@page import="classes.InfoLocal"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
     
     
 <!DOCTYPE html>
@@ -74,35 +77,25 @@ body {
   </div>
 </div>
 
-<div style="padding-left:20px">
-	<h1>Locals</h1>
-	<br>
-  
-  	<table style="width:100%">
-		<tr>
-			<th>Codi Carrer</th>
-		    <th>Codi Local</th> 
-		    <th>Tipo Local</th>
-		    <th>Carrer</th>
-		    <th>Via</th>
-		    <th>Numero</th>
-		    <th>Verificat</th>
-		</tr>
-		<%
-		webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
-		webservice.WebServiceLocal port = service.getWebServiceLocalPort();
-		
-		for(int i = 1; i < port.codiLocalLliure() - 1; i++) {
-	  	%>
-	  	<tr>  	
-			<td>
-				<%port.localPerCodiLocal(i).getNomLocal();%>
-			</td>
-		<%
-		}
-		%>
-		</tr>	
-	</table>
+<div style="padding-left:20px">		
+	
+	<% 	
+		InfoLocal[] locals = (InfoLocal[]) session.getAttribute("Locals"); 
+			if (locals == null) { 
+	%>
+			<h3>No s'ha trobat cap local!</h3>	
+	<% 		}
+			else { 
+	%>
+			<h1>Locals:</h1>
+	<%		
+				for (int i = 0; i < locals.length; i++) {%>
+				
+				<li><a href="cerca.jsp"><%=locals[i].getNomLocal()%>, <%=locals[i].getNomTipoLocalCA()%>, <%=locals[i].getNomVia()%>, <%=locals[i].getNomCarrer()%>, nº<%=locals[i].getNumero()%></a></li>
+	<%			}
+			}
+	%>
+	
 </div>
 
 </body>

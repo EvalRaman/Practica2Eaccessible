@@ -47,7 +47,7 @@ public class SvlDisplay extends HttpServlet {
 	
 	public void doFer(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		System.out.println("\nDins del servlet");
+		System.out.println("\n\n\nI'M HERE\n\n\n");
 		HttpSession session;
 		
 		String codiTipoLocal = request.getParameter("codiTipoLocal");
@@ -62,25 +62,33 @@ public class SvlDisplay extends HttpServlet {
 			try{
 				webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
 				webservice.WebServiceLocal port = service.getWebServiceLocalPort();
-				locals = port.localsPerNomLocalICodiTipoLocal(nomLocal,Integer.parseInt(codiTipoLocal));
+				locals = port.localsPerNomLocalICodiTipoLocal(nomLocal, Integer.parseInt(codiTipoLocal));
 			}
-			catch (Exception e) { e.printStackTrace();}
-			
-		}else if(!nomLocal.isEmpty()) {
+			catch (Exception e) { 
+				e.printStackTrace();
+			}
+		}
+		
+		else if(!nomLocal.isEmpty()) {
 			try{
 				webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
 				webservice.WebServiceLocal port = service.getWebServiceLocalPort();
 				locals = port.localsPerNomLocal(nomLocal);
 			}
-			catch (Exception e) { e.printStackTrace();}
-			
-		}else if(!codiTipoLocal.isEmpty()) {
+			catch (Exception e) { 
+				e.printStackTrace();
+			}
+		}
+		
+		else if(!codiTipoLocal.isEmpty()) {
 			try{
 				webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
 				webservice.WebServiceLocal port = service.getWebServiceLocalPort();
 				locals = port.localsPerTipoLocal(Integer.parseInt(codiTipoLocal));
 			}
-			catch (Exception e) { e.printStackTrace();}
+			catch (Exception e) { 
+				e.printStackTrace();
+			}
 		}	
 		
 		if(locals != null) {
@@ -90,11 +98,15 @@ public class SvlDisplay extends HttpServlet {
 				tipoLocals = port.cercaTipoLocal();
 				
 			}
-			catch (Exception e) { e.printStackTrace();}
+			catch (Exception e) { 
+				e.printStackTrace();
+			}
 			
 			InfoLocal[] infoLocals = new InfoLocal[locals.length];
-			for(int i=0; i<locals.length; i++){
+			for(int i = 0; i < locals.length; i++) {
+				
 				InfoLocal infoLocal = new InfoLocal();
+				
 				infoLocal.setCodiLocal(locals[i].getCodiLocal());
 				infoLocal.setCodiTipoLocal(locals[i].getCodiTipoLocal());
 				infoLocal.setCodiCarrer(locals[i].getCodiCarrer());
@@ -105,28 +117,30 @@ public class SvlDisplay extends HttpServlet {
 				infoLocal.setObservacions(locals[i].getObservacions());
 				infoLocal.setVerificat(locals[i].getVerificat());
 				
-				for(int j=0; j<tipoLocals.length; j++)
+				for(int j = 0; j < tipoLocals.length; j++)
 					if(locals[i].getCodiTipoLocal() == tipoLocals[j].getCodiTipoLocal()) {
 						infoLocal.setNomTipoLocalCA(tipoLocals[j].getNomTipoLocalCA());
 						infoLocal.setNomTipoLocalES(tipoLocals[j].getNomTipoLocalES());
 						infoLocal.setNomTipoLocalEN(tipoLocals[j].getNomTipoLocalEN());
 					}
+				
 				infoLocals[i] = infoLocal;
 			}
 
 			session.setAttribute("Locals", infoLocals);
 			
-		}else {
+		}
+		else {
 			session.setAttribute("Locals", null);
 		}
 		
-		
 		try {
 			ServletContext context = getServletContext();
-			RequestDispatcher rd = context.getRequestDispatcher("/inici");
+			RequestDispatcher rd = context.getRequestDispatcher("/index");
 			rd.forward(request, response);
 		}
-		catch ( Exception e ) {e.printStackTrace();}
+		catch ( Exception e ) {
+			e.printStackTrace();
+		}
 	}
-
 }

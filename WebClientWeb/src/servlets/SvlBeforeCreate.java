@@ -45,12 +45,12 @@ public class SvlBeforeCreate extends HttpServlet {
 	
 	public void doFer(HttpServletRequest request, HttpServletResponse response) {
         // TODO Auto-generated method stub
-        System.out.println("\nDins del servlet");
-        HttpSession sessio;
+        
+		HttpSession session;
 
         String codiTipoLocal = request.getParameter("codiTipoLocal");
 
-        sessio = request.getSession(true);
+        session = request.getSession(true);
 
         webservice.CaracteristicaTipoLocal[] caracteristicaTipoLocal = null;
 
@@ -71,12 +71,12 @@ public class SvlBeforeCreate extends HttpServlet {
             }catch (Exception e) { e.printStackTrace();}
         }
 
-        sessio.setAttribute("caracteristiques", caracteristiques);
-        sessio.setAttribute("codiTipoLocal", codiTipoLocal);
+        session.setAttribute("caracteristiques", caracteristiques);
+        session.setAttribute("codiTipoLocal", codiTipoLocal);
         
         try {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/CreateLocal.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/CreateLocal");
             rd.forward(request, response);
         }
         catch ( Exception e ) {e.printStackTrace();}

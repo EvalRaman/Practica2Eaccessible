@@ -14,9 +14,6 @@ import javax.servlet.http.HttpSession;
 import webservice.Accessibilitat;
 import webservice.Local;
 
-import webservice.Local;
-import webservice.WebServiceLocal;
-
 /**
  * Servlet implementation class SvlCreateLocal
  */
@@ -48,13 +45,9 @@ public class SvlCreateLocal extends HttpServlet {
 	}
 	
 	private void doFer(HttpServletRequest request, HttpServletResponse response) {
-<<<<<<< HEAD
-		
-=======
 
-		Local local = new webservice.Local();
-		int codiLocal = Integer.parseInt(request.getParameter("codiLocal"));
->>>>>>> branch 'Dev' of https://github.com/EvalRaman/Practica2Eaccessible.git
+		HttpSession session;
+		
 		int codiTipoLocal = Integer.parseInt(request.getParameter("codiTipoLocal"));
 		int codiCarrer = Integer.parseInt(request.getParameter("codiCarrer"));
 		String nomCarrer = request.getParameter("nomCarrer");
@@ -71,7 +64,7 @@ public class SvlCreateLocal extends HttpServlet {
 			caracteristicaValor[i][1] = request.getParameter("valor"+i);
 		}
 		
-		HttpSession session = request.getSession(true);
+		session = request.getSession(true);
 		
 		int codiLocalLliure = 0;
 		int codiAccessibilitatLliure = 0;
