@@ -45,7 +45,7 @@ public class SvlBeforeCreate extends HttpServlet {
 	
 	public void doFer(HttpServletRequest request, HttpServletResponse response) {
         // TODO Auto-generated method stub
-        System.out.println("\nDins del servlet Formulari");
+        System.out.println("\nDins del servlet");
         HttpSession sessio;
 
         String codiTipoLocal = request.getParameter("codiTipoLocal");
@@ -58,7 +58,7 @@ public class SvlBeforeCreate extends HttpServlet {
         try{
             webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
             webservice.WebServiceLocal port = service.getWebServiceLocalPort();
-            caracteristicaTipoLocal = port.infoCaracteristicaTipoLocal(Integer.parseInt(codiTipoLocal));
+            caracteristicaTipoLocal = port.caracteristiquesTipoLocal(Integer.parseInt(codiTipoLocal));
         }
         catch (Exception e) { e.printStackTrace();}
 

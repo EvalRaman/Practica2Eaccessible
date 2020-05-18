@@ -114,7 +114,7 @@ public class SvlCreateLocal extends HttpServlet {
 		try {
 			webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
 			webservice.WebServiceLocal port = service.getWebServiceLocalPort();
-			port.altaLocal(local, accessibilitats);
+			port.crearLocal(local, accessibilitats);
 		}
 		catch (Exception e) { e.printStackTrace();}
 		

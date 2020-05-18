@@ -96,7 +96,7 @@ body {
 	  	%>
 	  	<tr>  	
 			<td>
-				<%port.infoLocalPerCodiLocal(i).getNomLocal();%>
+				<%port.localPerCodiLocal(i).getNomLocal();%>
 			</td>
 		<%
 		}

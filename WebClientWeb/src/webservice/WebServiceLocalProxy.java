@@ -44,16 +44,16 @@ public class WebServiceLocalProxy implements webservice.WebServiceLocal {
     return webServiceLocal;
   }
   
+  public webservice.Caracteristica[] caracteristiquesPerCodiLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
+    if (webServiceLocal == null)
+      _initWebServiceLocalProxy();
+    return webServiceLocal.caracteristiquesPerCodiLocal(arg0);
+  }
+  
   public int codiLocalLliure() throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();
     return webServiceLocal.codiLocalLliure();
-  }
-  
-  public webservice.CaracteristicaTipoLocal[] infoCaracteristicaTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
-    if (webServiceLocal == null)
-      _initWebServiceLocalProxy();
-    return webServiceLocal.infoCaracteristicaTipoLocal(arg0);
   }
   
   public webservice.Local[] localsAccessibles(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
@@ -68,52 +68,40 @@ public class WebServiceLocalProxy implements webservice.WebServiceLocal {
     return webServiceLocal.infoCaracteristica(arg0);
   }
   
-  public void validaLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
+  public webservice.Local[] localsPerTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();
-    webServiceLocal.validaLocal(arg0);
+    return webServiceLocal.localsPerTipoLocal(arg0);
   }
   
-  public webservice.Local[] infoLocalPerNomLocal(java.lang.String arg0) throws java.rmi.RemoteException, webservice.ErrorException{
+  public webservice.Local[] localsNoVerificats() throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();
-    return webServiceLocal.infoLocalPerNomLocal(arg0);
+    return webServiceLocal.localsNoVerificats();
   }
   
-  public webservice.Local[] localnoVerificat() throws java.rmi.RemoteException, webservice.ErrorException{
+  public void crearLocal(webservice.Local arg0, webservice.Accessibilitat[] arg1) throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();
-    return webServiceLocal.localnoVerificat();
+    webServiceLocal.crearLocal(arg0, arg1);
   }
   
-  public void altaLocal(webservice.Local arg0, webservice.Accessibilitat[] arg1) throws java.rmi.RemoteException, webservice.ErrorException{
+  public void eliminarLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();
-    webServiceLocal.altaLocal(arg0, arg1);
+    webServiceLocal.eliminarLocal(arg0);
   }
   
-  public webservice.Local[] infoLocalPerNomLocalICodiTipoLocal(java.lang.String arg0, int arg1) throws java.rmi.RemoteException, webservice.ErrorException{
+  public webservice.Local localPerCodiLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();
-    return webServiceLocal.infoLocalPerNomLocalICodiTipoLocal(arg0, arg1);
+    return webServiceLocal.localPerCodiLocal(arg0);
   }
   
-  public webservice.Local[] infoLocalPerTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
+  public void verificarLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();
-    return webServiceLocal.infoLocalPerTipoLocal(arg0);
-  }
-  
-  public void baixaLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
-    if (webServiceLocal == null)
-      _initWebServiceLocalProxy();
-    webServiceLocal.baixaLocal(arg0);
-  }
-  
-  public webservice.Caracteristica[] infoCaracteristicaLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
-    if (webServiceLocal == null)
-      _initWebServiceLocalProxy();
-    return webServiceLocal.infoCaracteristicaLocal(arg0);
+    webServiceLocal.verificarLocal(arg0);
   }
   
   public int codiAccessibilitatLliure() throws java.rmi.RemoteException, webservice.ErrorException{
@@ -128,10 +116,22 @@ public class WebServiceLocalProxy implements webservice.WebServiceLocal {
     return webServiceLocal.cercaTipoLocal();
   }
   
-  public webservice.Local infoLocalPerCodiLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
+  public webservice.CaracteristicaTipoLocal[] caracteristiquesTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();
-    return webServiceLocal.infoLocalPerCodiLocal(arg0);
+    return webServiceLocal.caracteristiquesTipoLocal(arg0);
+  }
+  
+  public webservice.Local[] localsPerNomLocal(java.lang.String arg0) throws java.rmi.RemoteException, webservice.ErrorException{
+    if (webServiceLocal == null)
+      _initWebServiceLocalProxy();
+    return webServiceLocal.localsPerNomLocal(arg0);
+  }
+  
+  public webservice.Local[] localsPerNomLocalICodiTipoLocal(java.lang.String arg0, int arg1) throws java.rmi.RemoteException, webservice.ErrorException{
+    if (webServiceLocal == null)
+      _initWebServiceLocalProxy();
+    return webServiceLocal.localsPerNomLocalICodiTipoLocal(arg0, arg1);
   }
   
   

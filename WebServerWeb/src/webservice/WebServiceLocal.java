@@ -37,11 +37,10 @@ public class WebServiceLocal {
 				}
 				else{
 					connection = ds.getConnection();
-					String query = "insert into eAccessible.local (codilocal,coditipolocal,codicarrer,nomcarrer,nomvia,numero,nomlocal,observacions,verificat) values('"+local.getCodiLocal()+"','"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"',UPPER('"+local.getNomLocal()+"'),'"+local.getObservacions()+"','"+local.getVerificat()+"')";					
+					String query = "insert into eAccessible.local (codilocal,coditipolocal,codicarrer,nomcarrer,nomvia,numero,nomlocal,observacions,verificat) values('"+local.getCodiLocal()+"','"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"','"+local.getNomLocal()+"','"+local.getObservacions()+"','"+local.getVerificat()+"')";					
 					Statement stm = connection.createStatement();
 					stm.executeUpdate(query);
-
-					
+										
 					for(int i=0; i<accessibilitat.size(); i=i+1) {
 						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
 					}		
@@ -52,7 +51,7 @@ public class WebServiceLocal {
 			}
 		}
 		catch(Exception e) {
-			strEstat = "Error amb la bdd";
+			//strEstat = "Error amb la bdd";
 			throw new ErrorException(strEstat);
 
 		}

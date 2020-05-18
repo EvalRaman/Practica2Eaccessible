@@ -19,6 +19,10 @@ public class Accessibilitat {
 		this.setVerificat(verificat);
 		
 	}
+	
+	public Accessibilitat() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getCodiAccessibilitat() {
 		return codiAccessibilitat;
