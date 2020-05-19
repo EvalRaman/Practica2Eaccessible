@@ -12,13 +12,6 @@
 </head>
 
 <body>
-	<div data-role="navbar" id="navbar-1">
-		<ul>
-			<li><a href="Cerca.jsp">Cerca</a></li>
-			<li><a href="AltaLocal.jsp">Alta d'un local</a></li>
-		</ul>
-	</div>
-	
 	
 	<%
 	webservice.TipoLocal[] tipoLocal = null;
@@ -40,7 +33,6 @@
 	<%} %>	
 	</select>
 
-	
 	<br>
 	<input type="submit" value="Seguir">
 	</form>

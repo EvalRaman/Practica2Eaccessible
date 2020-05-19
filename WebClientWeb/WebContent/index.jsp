@@ -64,6 +64,32 @@ body {
   .header-right {
     float: none;
   }
+
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 1px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+  
+  .button1 {
+  background-color: #f1f1f1;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button1:hover {
+  background-color: #555555;
+  color: white;
 }
 </style>
 </head>
@@ -71,19 +97,55 @@ body {
 
 <div class="header">
   <a href="#default" class="logo">eAccessible</a>
+  
   <div class="header-right">
-    <a href="#create">Crear Local</a>
-    <a href="#contact">Cerca</a>
+	    <a href="BeforeCreate.jsp" style="padding: 5px"><button class="button button1">Crear Local</button></a>
+	    <a href="cerca.jsp" style="padding: 5px"><button class="button button1">Cerca</button></a>
   </div>
+  
 </div>
 
 <div style="padding-left:20px">		
-	
-	<% 	
+	<%
+		webservice.TipoLocal[] tipoLocal = null;
+		try {
+			webservice.WebServiceLocalServiceLocator service = new webservice.WebServiceLocalServiceLocator();
+			webservice.WebServiceLocal port = service.getWebServiceLocalPort();
+			tipoLocal = port.cercaTipoLocal();
+		}
+		catch (Exception e) { 
+			e.printStackTrace();
+		}
+	%>
+		<br>
+		<form method="post" action="SvlDisplay">
+		
+			<h3 style="display: inline">Nom del Local:</h3>
+			<input type="text" name="nomLocal">
+			
+			<h3 style="display: inline; margin-left:1%">Tipus de Local:</h3>
+			<select name="codiTipoLocal"> 
+			
+			<option value="">  </option>
+	<%		
+			for (int i = 0; i < tipoLocal.length; i++){%>
+				<option value="<%=tipoLocal[i].getCodiTipoLocal()%>"> <%=tipoLocal[i].getNomTipoLocalCA()%> </option>
+	<%		
+			}
+	%>	
+			</select>
+			<input type="hidden"  name="codiTipoLocal" value="">
+		
+			<br>
+			<input class="button button1" type="submit" value="Filtra" style="margin-top:1%">
+		</form>
+		
+	<%	
 		InfoLocal[] locals = (InfoLocal[]) session.getAttribute("Locals"); 
 			if (locals == null) { 
 	%>
-			<h3>No s'ha trobat cap local!</h3>	
+			<h3>No s'ha trobat cap local!</h3>
+							
 	<% 		}
 			else { 
 	%>

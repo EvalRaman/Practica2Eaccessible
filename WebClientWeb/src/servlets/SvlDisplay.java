@@ -47,7 +47,7 @@ public class SvlDisplay extends HttpServlet {
 	
 	public void doFer(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		System.out.println("\n\n\nI'M HERE\n\n\n");
+		
 		HttpSession session;
 		
 		String codiTipoLocal = request.getParameter("codiTipoLocal");

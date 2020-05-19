@@ -29,12 +29,12 @@
 	%>
 	
 	<br>
-	<form method="post" action="SvlBeforeCreate">
+	<form method="post" action="SvlDisplay">
 	
-	Cerca un local:
+	Nom del Local:
 	<input type="text" name="nomLocal">
 	
-	Tipus de local
+	Tipus de Local:
 	<select name="codiTipoLocal"> 
 	<option value="">  </option>
 	<%for (int i = 0; i < tipoLocal.length; i++){%>
