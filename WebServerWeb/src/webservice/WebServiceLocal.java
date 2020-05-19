@@ -32,7 +32,8 @@ public class WebServiceLocal {
 			if ( cxt != null ){
 				DataSource ds = (DataSource) cxt.lookup( "java:jboss/PostgreSQL/eAccessible");
 				if ( ds == null ) {
-					strEstat = "Error al crear el datasource";
+                    strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
 					throw new ErrorException(strEstat);
 				}
 				else{
@@ -43,15 +44,17 @@ public class WebServiceLocal {
 										
 					for(int i=0; i<accessibilitat.size(); i=i+1) {
 						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
-					}		
-					
+                    }
+                    strEstat = "Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" registrat correctament";		
+					logRegister(strEstat);
 					connection.close();
 					stm.close();
 				}
 			}
 		}
 		catch(Exception e) {
-			//strEstat = "Error amb la bdd";
+            strEstat = "Error amb la base de dades eAccessible operació: crearLocal";
+            logRegister(strEstat);
 			throw new ErrorException(strEstat);
 
 		}
@@ -75,6 +78,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
 
                 } else {
@@ -85,13 +89,15 @@ public class WebServiceLocal {
 
                     query = "delete from eAccessible.local where codilocal=" + codiLocal;
                     stm.executeUpdate(query);
-
+                    strEstat = "Local "+codiLocal+" borrat correctament";
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la bdd";
+            strEstat = "Error amb la base de dades eAccessible operació: eliminarLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
 
         } finally {
@@ -116,6 +122,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error amb el Datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -123,14 +130,16 @@ public class WebServiceLocal {
                     String query = "update eAccessible.local set verificat='S' where codilocal=" + codiLocal;
                     Statement stm = connection.createStatement();
                     stm.executeUpdate(query);
-
+                    strEstat = "Local: " +codiLocal+" verificat correctament";
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: verificarLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
 
         } finally {
@@ -158,6 +167,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -166,6 +176,8 @@ public class WebServiceLocal {
                             + nomLocal + "%') AND coditipolocal=" + codiTipoLocal;
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
+                    strEstat = "Operació: localsPerNomLocalICodiTipoLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
+                    logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiTipoLocal(rs.getInt("coditipolocal"));
@@ -178,13 +190,17 @@ public class WebServiceLocal {
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);
+                        strEstat = "Operació: localsPerNomLocalICodiTipoLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+					    logRegister(strEstat);
                     }
+                    
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: localsPerNomLocalICodiTipoLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -210,6 +226,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -228,13 +245,15 @@ public class WebServiceLocal {
                     local.setNumero(rs.getInt("numero"));
                     local.setObservacions(rs.getString("observacions"));
                     local.setVerificat(rs.getString("verificat"));
-
+                    strEstat = "Operació:localPerCodiLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: localPerCodiLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -260,6 +279,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -268,6 +288,8 @@ public class WebServiceLocal {
                             + nomLocal + "%')";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
+                    strEstat = "Operació: localsPerNomLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
+                    logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiTipoLocal(rs.getInt("coditipolocal"));
@@ -280,13 +302,16 @@ public class WebServiceLocal {
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);
+                        strEstat = "Operació:localsPerNomLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+                        logRegister(strEstat);
                     }
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: localsPerNomLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -312,6 +337,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -320,6 +346,8 @@ public class WebServiceLocal {
                             + codiTipoLocal;
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
+                    strEstat = "Operació: localsPerTipoLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
+                    logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiTipoLocal(rs.getInt("coditipolocal"));
@@ -332,13 +360,16 @@ public class WebServiceLocal {
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);
+                        strEstat = "Operació:localsPerTipoLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+                        logRegister(strEstat);
                     }
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: localsPerTipoLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -365,6 +396,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -372,21 +404,23 @@ public class WebServiceLocal {
                     String query = "select coditipolocal, nomtipolocalca, nomtipolocales, nomtipolocalen from eAccessible.tipolocal";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
+                    strEstat = "Operació: cercaTipoLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
+                    logRegister(strEstat);
                     while (rs.next()) {
                         TipoLocal tipoLocal = new TipoLocal();
                         tipoLocal.setCodiTipoLocal(rs.getInt("coditipolocal"));
                         tipoLocal.setNomTipoLocalCA(rs.getString("nomtipolocalca"));
                         tipoLocal.setNomTipoLocalES(rs.getString("nomtipolocales"));
                         tipoLocal.setNomTipoLocalEN(rs.getString("nomtipolocalen"));
-
                         tipoLocalList.add(tipoLocal);
-                    }
+                   }
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: cercaTipoLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -412,6 +446,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -419,6 +454,8 @@ public class WebServiceLocal {
                     String query = "select coditipolocal,codicarrer,nomcarrer,nomvia,codilocal,nomlocal,numero,observacions,verificat from eAccessible.local where verificat='N'";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
+                    strEstat = "Operació: localsNoVerificats amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
+                    logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiTipoLocal(rs.getInt("coditipolocal"));
@@ -431,13 +468,16 @@ public class WebServiceLocal {
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);
+                        strEstat = "Operació:localsPerTipoLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+                        logRegister(strEstat);
                     }
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: localsNoVerificats";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -463,6 +503,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -471,6 +512,8 @@ public class WebServiceLocal {
                             + codiCaracteristica + " and accessibilitat.codilocal = local.codilocal";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
+                    strEstat = "Operació: localsAccessibles amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
+                    logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiLocal(rs.getInt("coditipolocal"));
@@ -483,13 +526,16 @@ public class WebServiceLocal {
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);
+                        strEstat = "Operació:localsPerTipoLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+                        logRegister(strEstat);
                     }
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: localsAccessibles";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -515,6 +561,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -523,6 +570,8 @@ public class WebServiceLocal {
                             + codiTipoLocal;
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
+                    strEstat = "Operació: caracteristiquesTipoLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
+                    logRegister(strEstat);
                     while (rs.next()) {
                         CaracteristicaTipoLocal caracteristicaTipoLocal = new CaracteristicaTipoLocal();
                         caracteristicaTipoLocal
@@ -530,13 +579,16 @@ public class WebServiceLocal {
                         caracteristicaTipoLocal.setCodicaracteristica(rs.getInt("codicaracteristica"));
                         caracteristicaTipoLocal.setCoditipolocal(rs.getInt("coditipolocal"));
                         caracteristicaTipoLocalList.add(caracteristicaTipoLocal);
+                        strEstat = "Operació:caracteristiquesTipoLocal, tipolocal "+caracteristicaTipoLocal.getCoditipolocal()+" consultat correctament";		
+                        logRegister(strEstat);
                     }
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: caracteristiquesTipoLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -562,10 +614,10 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
-
                     String query = "select codicaracteristica, nomcaracteristicaca, nomcaracteristicaes, nomcaracteristicaen, tipo, codinivell  from eAccessible.caracteristica where caracteristica.codicaracteristica="
                             + codiCaracteristica;
                     Statement stm = connection.createStatement();
@@ -579,12 +631,15 @@ public class WebServiceLocal {
                     caracteristica.setTipo(rs.getInt("tipo"));
                     caracteristica.setCodiNivell(rs.getInt("codinivell"));
 
+                    strEstat = "Operació: infoCaracteristica amb: "+ caracteristica.getNomCaracteristicaCA()+ " efectuada correctament";
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: infoCaracteristica";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -610,6 +665,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -619,13 +675,15 @@ public class WebServiceLocal {
                     ResultSet rs = stm.executeQuery(query);
                     rs.next();
                     lastCodiLocal = rs.getInt("codilocal");
-
+                    strEstat = "Operació: codiLocalLliure amb: "+ lastCodiLocal+ " efectuada correctament";
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: codiLocalLliure";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -652,6 +710,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -660,18 +719,23 @@ public class WebServiceLocal {
                             + codiLocal;
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
+                    strEstat = "Operació: caracteristiquesPerCodiLocal amb: "+ rs.getFetchSize()+ " efectuada correctament";
+                    logRegister(strEstat);
                     while (rs.next()) {
                         Caracteristica caracteristicaValor = new Caracteristica();
                         caracteristicaValor.setNomCaracteristicaCA(rs.getString("nomcaracteristicaca"));
                         caracteristicaValor.setTipo(rs.getInt("valor"));
                         caracteristicaValorLlista.add(caracteristicaValor);
+                        strEstat = "Operació: caracteristiquesPerCodiLocal amb: "+ caracteristicaValor.getNomCaracteristicaCA()+ " efectuada correctament";
+                     logRegister(strEstat);
                     }
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: caracteristiquesPerCodiLocal";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -696,6 +760,7 @@ public class WebServiceLocal {
                 DataSource ds = (DataSource) cxt.lookup("java:jboss/PostgreSQL/eAccessible");
                 if (ds == null) {
                     strEstat = "Error al crear el datasource";
+                    logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
@@ -705,13 +770,15 @@ public class WebServiceLocal {
                     ResultSet rs = stm.executeQuery(query);
                     rs.next();
                     lastCodiAccessibilitat = rs.getInt("codiAccessibilitat");
-
+                    strEstat = "Operació: codiAccessibilitatLliure amb: "+ lastCodiAccessibilitat+ " efectuada correctament";
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
             }
         } catch (Exception e) {
-            strEstat = "Error amb la base de dades";
+            strEstat = "Error amb la base de dades eAccessible operació: codiAccessibilitatLliure";
+            logRegister(strEstat);
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -723,5 +790,33 @@ public class WebServiceLocal {
         }
         return lastCodiAccessibilitat + 1;
     }
+
+    public void logRegister(String actionToRegister) throws ErrorException {
+        Connection connection = null;
+        try{
+			InitialContext cxt = new InitialContext();
+			if ( cxt != null ){
+				DataSource ds = (DataSource) cxt.lookup( "java:jboss/PostgreSQL/log");
+				if ( ds == null ) {
+                    throw new ErrorException("Error al crear el datasource");
+                }else{
+                connection = ds.getConnection();
+                String query = "insert into events (action, time_date) values('"+actionToRegister+"', date_trunc('minute', current_timestamp));";					
+                Statement stm = connection.createStatement();
+                stm.executeUpdate(query); 
+                }          
+            }
+        }catch (Exception e) {
+            throw new ErrorException("Error en bbd log");
+
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }         
 
 }
