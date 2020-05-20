@@ -80,6 +80,12 @@ public class WebServiceLocalProxy implements webservice.WebServiceLocal {
     return webServiceLocal.localsNoVerificats();
   }
   
+  public void logRegister(java.lang.String arg0) throws java.rmi.RemoteException, webservice.ErrorException{
+    if (webServiceLocal == null)
+      _initWebServiceLocalProxy();
+    webServiceLocal.logRegister(arg0);
+  }
+  
   public void crearLocal(webservice.Local arg0, webservice.Accessibilitat[] arg1) throws java.rmi.RemoteException, webservice.ErrorException{
     if (webServiceLocal == null)
       _initWebServiceLocalProxy();

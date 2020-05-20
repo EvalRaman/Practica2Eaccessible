@@ -45,8 +45,10 @@ public class WebServiceLocal {
 					for(int i=0; i<accessibilitat.size(); i=i+1) {
 						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
                     }
+					/*
                     strEstat = "Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" registrat correctament";		
 					logRegister(strEstat);
+					*/
 					connection.close();
 					stm.close();
 				}
@@ -346,8 +348,7 @@ public class WebServiceLocal {
                             + codiTipoLocal;
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
-                    strEstat = "Operació: localsPerTipoLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
-                    logRegister(strEstat);
+                    
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiTipoLocal(rs.getInt("coditipolocal"));
@@ -359,10 +360,11 @@ public class WebServiceLocal {
                         local.setNumero(rs.getInt("numero"));
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
-                        localList.add(local);
-                        strEstat = "Operació:localsPerTipoLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
-                        logRegister(strEstat);
+                        localList.add(local);                       
                     }
+                    strEstat = "Operació: localsPerTipoLocal, "+localList.size()+" consultat correctament";		
+                    logRegister(strEstat);
+                    
                     connection.close();
                     stm.close();
                 }
@@ -794,19 +796,21 @@ public class WebServiceLocal {
     public void logRegister(String actionToRegister) throws ErrorException {
         Connection connection = null;
         try{
-			InitialContext cxt = new InitialContext();
-			if ( cxt != null ){
-				DataSource ds = (DataSource) cxt.lookup( "java:jboss/PostgreSQL/log");
-				if ( ds == null ) {
+			InitialContext cxtLog = new InitialContext();
+			
+			if ( cxtLog != null ){
+				DataSource dsLog = (DataSource) cxtLog.lookup("java:jboss/PostgreSQL/incidencia");
+				if ( dsLog == null ) {
                     throw new ErrorException("Error al crear el datasource");
                 }else{
-                connection = ds.getConnection();
-                String query = "insert into events (action, time_date) values('"+actionToRegister+"', date_trunc('minute', current_timestamp));";					
+                connection = dsLog.getConnection();
+                String query = "insert into incidencia.tipusincidencia (action, time_date) values('"+actionToRegister+"', date_trunc('minute', current_timestamp));";
                 Statement stm = connection.createStatement();
                 stm.executeUpdate(query); 
-                }          
+                }        
             }
         }catch (Exception e) {
+        	e.printStackTrace();
             throw new ErrorException("Error en bbd log");
 
         } finally {

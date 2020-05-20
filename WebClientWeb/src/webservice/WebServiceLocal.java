@@ -14,6 +14,7 @@ public interface WebServiceLocal extends java.rmi.Remote {
     public webservice.Caracteristica infoCaracteristica(int arg0) throws java.rmi.RemoteException, webservice.ErrorException;
     public webservice.Local[] localsPerTipoLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException;
     public webservice.Local[] localsNoVerificats() throws java.rmi.RemoteException, webservice.ErrorException;
+    public void logRegister(java.lang.String arg0) throws java.rmi.RemoteException, webservice.ErrorException;
     public void crearLocal(webservice.Local arg0, webservice.Accessibilitat[] arg1) throws java.rmi.RemoteException, webservice.ErrorException;
     public void eliminarLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException;
     public webservice.Local localPerCodiLocal(int arg0) throws java.rmi.RemoteException, webservice.ErrorException;
