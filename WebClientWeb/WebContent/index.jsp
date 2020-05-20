@@ -1,5 +1,4 @@
-<%@page import="webservice.WebServiceLocal"%>
-<%@page import="webservice.Local"%>
+<%@page import="webservice.*"%>
 <%@page import="classes.InfoLocal"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -92,6 +91,17 @@ body {
   color: white;
 }
 
+.button2 {
+  background-color: white; 
+  color: #f44336; 
+  border: 2px solid #f44336;
+}
+
+.button2:hover {
+  background-color: #f44336;
+  color: white;
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -121,7 +131,7 @@ tr:nth-child(even) {
   
 </div>
 
-<div style="padding-left:20px">		
+<div style="padding-left:20px; padding-right: 20px">		
 	<%
 		webservice.TipoLocal[] tipoLocal = null;
 		try {
@@ -139,7 +149,7 @@ tr:nth-child(even) {
 			<h3 style="display: inline">Nom del Local:</h3>
 			<input type="text" name="nomLocal">
 			
-			<h3 style="display: inline; margin-left:1%">Tipus de Local:</h3>
+			<h3 style="display: inline; margin-left:1%; width:98%">Tipus de Local:</h3>
 			<select name="codiTipoLocal"> 
 			
 			<option value="">  </option>
@@ -173,6 +183,7 @@ tr:nth-child(even) {
 				    	<th>VIA</th>
 				    	<th>CARRER</th>
 				    	<th>Nº</th>
+				    	<th>ELIMINAR</th>
 				  	</tr>
 	<%
 					for (int i = 0; i < locals.length; i++) {%>
@@ -182,6 +193,14 @@ tr:nth-child(even) {
 							<td><%=locals[i].getNomVia()%></td>
 							<td><%=locals[i].getNomCarrer()%></td>
 							<td><%=locals[i].getNumero()%></td>
+							<td>
+								<form method="post" action="SvlDelete">
+									<%session.setAttribute("deleteName", locals[i].getNomLocal());%>
+									<input type="hidden" value=<%=locals[i].getNomLocal()%> name="deleteName">
+									<input type="hidden" value=<%=locals[i].getCodiLocal()%> name="deleteCode">
+									<input class="button button2" type="submit" value="X">
+								</form>
+							</td>
 						</tr>
 	<%			
 					}
@@ -190,7 +209,6 @@ tr:nth-child(even) {
 	<%		
 			}
 	%>
-	
 </div>
 
 </body>

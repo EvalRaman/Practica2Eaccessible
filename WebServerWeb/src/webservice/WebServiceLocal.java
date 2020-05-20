@@ -361,7 +361,7 @@ public class WebServiceLocal {
                         local.setNumero(rs.getInt("numero"));
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
-                        localList.add(local);
+                        localList.add(local);                       
                     }
                     strEstat = "Operació: localsPerTipoLocal amb: "+ localList.size()+ " resultats efectuada correctament";
                     logRegister(strEstat);
@@ -806,17 +806,18 @@ public class WebServiceLocal {
         }
         Connection connection = null;
         try{
-			InitialContext cxt2 = new InitialContext();
-			if ( cxt2 != null ){
-				DataSource ds = (DataSource) cxt2.lookup("java:jboss/PostgreSQL/log");
-				if ( ds == null ) {
+			InitialContext cxtLog = new InitialContext();
+			
+			if ( cxtLog != null ){
+				DataSource dsLog = (DataSource) cxtLog.lookup("java:jboss/PostgreSQL/incidencia");
+				if ( dsLog == null ) {
                     throw new ErrorException("Error al crear el datasource");
                 }else{
-                connection = ds.getConnection();
-                String query = "insert into events (action, time_date) values('"+actionToRegister+"', date_trunc('minute', current_timestamp));";					
+                connection = dsLog.getConnection();
+                String query = "insert into incidencia.tipusincidencia (action, time_date) values('"+actionToRegister+"', date_trunc('minute', current_timestamp));";
                 Statement stm = connection.createStatement();
                 stm.executeUpdate(query); 
-                }          
+                }        
             }
         }catch (Exception e) {
             e.printStackTrace();

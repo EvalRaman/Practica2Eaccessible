@@ -54,4 +54,14 @@
     <servlet-name>cerca</servlet-name>
     <url-pattern>/cerca</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>JSPDeleteLocal</display-name>
+    <servlet-name>JSPDeleteLocal</servlet-name>
+    <jsp-file>/JSPDeleteLocal.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSPDeleteLocal</servlet-name>
+    <url-pattern>/JSPDeleteLocal</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -48,11 +48,11 @@ h1 {
 
 	<div>
 		<%
-		String nomLocal 	 = (String) session.getAttribute("nomLocal");
+		String nomLocal = (String) session.getAttribute("nomLocal");
 		%>
 		
-		<h1>   Local <%=nomLocal%> creat correctament!   </h1>
-		<a href="index.jsp"><input class="button button1" type="submit" value="Accepta" style="margin-top: 1%; width: 8%; margin-left: 46%; margin-right: 46%"></a>
+		<h1>   Local <%=nomLocal%> eliminat correctament!   </h1>
+		<a href="index.jsp"><input class="button button1" type="submit" value="Accepta" style="margin-top: 1%; width: 8%; margin-left: 46%; margin-right: 46%"></a>	
 	</div>
 </body>
 

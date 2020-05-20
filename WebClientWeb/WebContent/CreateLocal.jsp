@@ -45,10 +45,6 @@ tr:nth-child(even) {
   background-color: #555555;
   color: white;
 }
-
-input {
-  width: 50%%;
-}
 </style>
 	<meta charset="UTF-8">
 	<title>Local</title>
@@ -76,7 +72,14 @@ input {
 		<br>
 		
 		<h3 style="margin-block-end:0">Nom de la via:</h3>
-		<input name="nomVia" placeholder="Nom de la via" type="text">
+		<select name="nomVia" style="width: 177px">
+			<option>PL</option>
+			<option>CA</option>
+			<option>AV</option>
+			<option>RA</option>
+			<option>TR</option>
+			<option>PS</option>
+		</select>
 		<br>
 		
 		<h3 style="margin-block-end:0">Número:</h3>
@@ -98,9 +101,9 @@ input {
 		
 		<table>
 			<%for(int i = 0; i < caracteristiques.length; i++) { %>
+				<tr><input type="hidden" name="codiCaracteristica<%=i%>" value="<%=caracteristiques[i].getCodiCaracteristica()%>"><tr>
 			 	<tr>
-				    <input type="hidden" name="codiCaracteristica<%=i%>" value="<%=caracteristiques[i].getCodiCaracteristica()%>">
-				    <td><%=caracteristiques[i].getNomCaracteristicaCA() %></td>
+				    <td><%=caracteristiques[i].getNomCaracteristicaCA()%></td>
 				    <td><select type="text" name="valor<%=i%>">
 				    	<option value="0">0</option>
 				    	<option value="1">1</option>
