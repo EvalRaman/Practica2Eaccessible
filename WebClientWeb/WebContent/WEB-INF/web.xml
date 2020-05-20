@@ -64,4 +64,24 @@
     <servlet-name>JSPDeleteLocal</servlet-name>
     <url-pattern>/JSPDeleteLocal</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailLocal</display-name>
+    <servlet-name>DetailLocal</servlet-name>
+    <jsp-file>/DetailLocal.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailLocal</servlet-name>
+    <url-pattern>/DetailLocal</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConfirmatedVerify</display-name>
+    <servlet-name>ConfirmatedVerify</servlet-name>
+    <jsp-file>/ConfirmatedVerify.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfirmatedVerify</servlet-name>
+    <url-pattern>/ConfirmatedVerify</url-pattern>
+  </servlet-mapping>
 </web-app>

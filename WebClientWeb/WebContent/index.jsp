@@ -188,7 +188,12 @@ tr:nth-child(even) {
 	<%
 					for (int i = 0; i < locals.length; i++) {%>
 						<tr>
-							<td><%=locals[i].getNomLocal()%></td>
+							<td>
+								<form method="post" action="SvlDisplayLocal">
+									<input type="hidden" value=<%=locals[i].getCodiLocal()%> name="codiLocal">
+									<input class="button button2" type="submit" value="<%=locals[i].getNomLocal()%>">
+								</form>
+							</td>
 							<td><%=locals[i].getNomTipoLocalCA()%></td>
 							<td><%=locals[i].getNomVia()%></td>
 							<td><%=locals[i].getNomCarrer()%></td>

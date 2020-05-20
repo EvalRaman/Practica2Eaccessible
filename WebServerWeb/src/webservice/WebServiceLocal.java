@@ -613,13 +613,12 @@ public class WebServiceLocal {
                     logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
-                    connection = ds.getConnection();
+                	connection = ds.getConnection();
                     String query = "select codicaracteristica, nomcaracteristicaca, nomcaracteristicaes, nomcaracteristicaen, tipo, codinivell  from eAccessible.caracteristica where caracteristica.codicaracteristica="
                             + codiCaracteristica;
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
                     rs.next();
-
                     caracteristica.setCodiCaracteristica(rs.getInt("codicaracteristica"));
                     caracteristica.setNomCaracteristicaCA(rs.getString("nomcaracteristicaca"));
                     caracteristica.setNomCaracteristicaES(rs.getString("nomcaracteristicaes"));

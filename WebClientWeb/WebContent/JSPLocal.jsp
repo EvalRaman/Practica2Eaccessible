@@ -48,7 +48,7 @@ h1 {
 
 	<div>
 		<%
-		String nomLocal 	 = (String) session.getAttribute("nomLocal");
+		String nomLocal = (String) session.getAttribute("nomLocal");
 		%>
 		
 		<h1>   Local <%=nomLocal%> creat correctament!   </h1>
