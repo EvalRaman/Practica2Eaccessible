@@ -193,7 +193,14 @@ tr:nth-child(even) {
 							<td><%=locals[i].getNomVia()%></td>
 							<td><%=locals[i].getNomCarrer()%></td>
 							<td><%=locals[i].getNumero()%></td>
-							<td><input class="button button2" type="submit" value="X"></td>
+							<td>
+								<form method="post" action="SvlDelete">
+									<%session.setAttribute("deleteName", locals[i].getNomLocal());%>
+									<input type="hidden" value=<%=locals[i].getNomLocal()%> name="deleteName">
+									<input type="hidden" value=<%=locals[i].getCodiLocal()%> name="deleteCode">
+									<input class="button button2" type="submit" value="X">
+								</form>
+							</td>
 						</tr>
 	<%			
 					}
@@ -202,7 +209,6 @@ tr:nth-child(even) {
 	<%		
 			}
 	%>
-	
 </div>
 
 </body>

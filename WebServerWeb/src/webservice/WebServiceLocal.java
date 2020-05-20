@@ -626,9 +626,10 @@ public class WebServiceLocal {
                     caracteristica.setNomCaracteristicaEN(rs.getString("nomcaracteristicaen"));
                     caracteristica.setTipo(rs.getInt("tipo"));
                     caracteristica.setCodiNivell(rs.getInt("codinivell"));
-
+                    /*
                     strEstat = "Operació: infoCaracteristica amb: "+ rs.getString("nomcaracteristicaca")+ " efectuada correctament";
                     logRegister(strEstat);
+                    */
                     connection.close();
                     stm.close();
                 }
