@@ -7,14 +7,6 @@
 <title>Cerca Local</title>
 </head>
 <body>
-
-	<div data-role="navbar" id="navbar-1">
-		<ul>
-			<li><a style="background-color:#addffc" href="#">Cerca</a></li>
-			<li><a href="CreateLocal.jsp">Alta d'un local</a></li>
-		</ul>
-	</div>
-		
 	
 	<%
 	webservice.TipoLocal[] tipoLocal = null;
@@ -28,19 +20,29 @@
 	}
 	%>
 	
-	<br>
-	<form method="post" action="SvlDisplay">
+	<h1>Cerca avançada</h1>
 	
+	<br>
+	<form method="post" action="SvlDisplay" style="margin-left:20px">
+	<!-- 
 	Nom del Local:
 	<input type="text" name="nomLocal">
+	-->
 	
-	Tipus de Local:
+	<h3>Tipus de Local:</h3>
 	<select name="codiTipoLocal"> 
+	
 	<option value="">  </option>
 	<%for (int i = 0; i < tipoLocal.length; i++){%>
 		<option value="<%=tipoLocal[i].getCodiTipoLocal()%>"> <%=tipoLocal[i].getNomTipoLocalCA()%> </option>
 	<%} %>	
 	</select>
+	
+	<h3>Via:</h3>
+	<input type="text" name="nomVia">
+	
+	<h3>Carrer:</h3>
+	<input type="text" name="nomLocal">
 	
 	<input type="hidden"  name="codiTipoLocal" value="">
 	

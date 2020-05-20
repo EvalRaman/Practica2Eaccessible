@@ -91,6 +91,22 @@ body {
   background-color: #555555;
   color: white;
 }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
 </style>
 </head>
 <body>
@@ -150,11 +166,28 @@ body {
 			else { 
 	%>
 			<h1>Locals:</h1>
+				<table>
+					<tr>
+				    	<th>NOM</th>
+				    	<th>TIPUS LOCAL</th>
+				    	<th>VIA</th>
+				    	<th>CARRER</th>
+				    	<th>Nº</th>
+				  	</tr>
+	<%
+					for (int i = 0; i < locals.length; i++) {%>
+						<tr>
+							<td><%=locals[i].getNomLocal()%></td>
+							<td><%=locals[i].getNomTipoLocalCA()%></td>
+							<td><%=locals[i].getNomVia()%></td>
+							<td><%=locals[i].getNomCarrer()%></td>
+							<td><%=locals[i].getNumero()%></td>
+						</tr>
+	<%			
+					}
+	%>
+				</table>
 	<%		
-				for (int i = 0; i < locals.length; i++) {%>
-				
-				<li><a href="cerca.jsp"><%=locals[i].getNomLocal()%>, <%=locals[i].getNomTipoLocalCA()%>, <%=locals[i].getNomVia()%>, <%=locals[i].getNomCarrer()%>, nº<%=locals[i].getNumero()%></a></li>
-	<%			}
 			}
 	%>
 	
