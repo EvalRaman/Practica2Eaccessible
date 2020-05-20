@@ -39,16 +39,16 @@ public class WebServiceLocal {
 				else{
 					connection = ds.getConnection();
 					String query = "insert into eAccessible.local (codilocal,coditipolocal,codicarrer,nomcarrer,nomvia,numero,nomlocal,observacions,verificat) values('"+local.getCodiLocal()+"','"+local.getCodiTipoLocal()+"','"+local.getCodiCarrer()+"','"+local.getNomCarrer()+"','"+local.getNomVia()+"','"+local.getNumero()+"','"+local.getNomLocal()+"','"+local.getObservacions()+"','"+local.getVerificat()+"')";					
-					Statement stm = connection.createStatement();
-					stm.executeUpdate(query);
+                    Statement stm = connection.createStatement();
+                    strEstat = "Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" registrat correctament";		
+					logRegister(strEstat);
+                    stm.executeUpdate(query);
+                    
 										
 					for(int i=0; i<accessibilitat.size(); i=i+1) {
 						stm.executeUpdate("insert into eAccessible.accessibilitat (codiaccessibilitat,codilocal,codicaracteristica,valor,verificat) values('"+accessibilitat.get(i).getCodiAccessibilitat()+"','"+accessibilitat.get(i).getCodiLocal()+"','"+accessibilitat.get(i).getCodiCaracteristica()+"','"+accessibilitat.get(i).getValor()+"','"+accessibilitat.get(i).getVerificat()+"')");
                     }
-					/*
-                    strEstat = "Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" registrat correctament";		
-					logRegister(strEstat);
-					*/
+                    
 					connection.close();
 					stm.close();
 				}
@@ -178,8 +178,6 @@ public class WebServiceLocal {
                             + nomLocal + "%') AND coditipolocal=" + codiTipoLocal;
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
-                    strEstat = "Operació: localsPerNomLocalICodiTipoLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
-                    logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiTipoLocal(rs.getInt("coditipolocal"));
@@ -192,7 +190,7 @@ public class WebServiceLocal {
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);
-                        strEstat = "Operació: localsPerNomLocalICodiTipoLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+                        strEstat = "Operació: localsPerNomLocalICodiTipoLocal, Local "+rs.getInt("codilocal")+" amb nom "+rs.getString("nomlocal")+" consultat correctament";		
 					    logRegister(strEstat);
                     }
                     
@@ -247,7 +245,7 @@ public class WebServiceLocal {
                     local.setNumero(rs.getInt("numero"));
                     local.setObservacions(rs.getString("observacions"));
                     local.setVerificat(rs.getString("verificat"));
-                    strEstat = "Operació:localPerCodiLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+                    strEstat = "Operació:localPerCodiLocal, Local "+rs.getInt("codilocal")+" amb nom "+rs.getString("nomlocal")+" consultat correctament";		
                     logRegister(strEstat);
                     connection.close();
                     stm.close();
@@ -290,7 +288,6 @@ public class WebServiceLocal {
                             + nomLocal + "%')";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
-                    strEstat = "Operació: localsPerNomLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
                     logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
@@ -304,7 +301,7 @@ public class WebServiceLocal {
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);
-                        strEstat = "Operació:localsPerNomLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
+                        strEstat = "Operació:localsPerNomLocal, Local "+rs.getInt("codilocal")+" amb nom "+rs.getString("nomlocal")+" consultat correctament";		
                         logRegister(strEstat);
                     }
                     connection.close();
@@ -362,9 +359,8 @@ public class WebServiceLocal {
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);                       
                     }
-                    strEstat = "Operació: localsPerTipoLocal, "+localList.size()+" consultat correctament";		
+                    strEstat = "Operació: localsPerTipoLocal amb: "+ localList.size()+ " resultats efectuada correctament";
                     logRegister(strEstat);
-                    
                     connection.close();
                     stm.close();
                 }
@@ -406,8 +402,7 @@ public class WebServiceLocal {
                     String query = "select coditipolocal, nomtipolocalca, nomtipolocales, nomtipolocalen from eAccessible.tipolocal";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
-                    strEstat = "Operació: cercaTipoLocal amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
-                    logRegister(strEstat);
+                
                     while (rs.next()) {
                         TipoLocal tipoLocal = new TipoLocal();
                         tipoLocal.setCodiTipoLocal(rs.getInt("coditipolocal"));
@@ -416,6 +411,8 @@ public class WebServiceLocal {
                         tipoLocal.setNomTipoLocalEN(rs.getString("nomtipolocalen"));
                         tipoLocalList.add(tipoLocal);
                    }
+                   strEstat = "Operació: cercaTipoLocal amb: "+ tipoLocalList.size()+ " resultats efectuada correctament";
+                   logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
@@ -456,8 +453,6 @@ public class WebServiceLocal {
                     String query = "select coditipolocal,codicarrer,nomcarrer,nomvia,codilocal,nomlocal,numero,observacions,verificat from eAccessible.local where verificat='N'";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
-                    strEstat = "Operació: localsNoVerificats amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
-                    logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiTipoLocal(rs.getInt("coditipolocal"));
@@ -469,10 +464,10 @@ public class WebServiceLocal {
                         local.setNumero(rs.getInt("numero"));
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
-                        localList.add(local);
-                        strEstat = "Operació:localsPerTipoLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
-                        logRegister(strEstat);
+                        localList.add(local);                        
                     }
+                    strEstat = "Operació:localsPerTipoLocal, amb  "+localList.size()+" resultats consultats correctament";		
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
@@ -514,8 +509,6 @@ public class WebServiceLocal {
                             + codiCaracteristica + " and accessibilitat.codilocal = local.codilocal";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
-                    strEstat = "Operació: localsAccessibles amb: "+ rs.getFetchSize()+ " resultats efectuada correctament";
-                    logRegister(strEstat);
                     while (rs.next()) {
                         Local local = new Local();
                         local.setCodiLocal(rs.getInt("coditipolocal"));
@@ -528,9 +521,9 @@ public class WebServiceLocal {
                         local.setObservacions(rs.getString("observacions"));
                         local.setVerificat(rs.getString("verificat"));
                         localList.add(local);
-                        strEstat = "Operació:localsPerTipoLocal, Local "+local.getCodiLocal()+" amb nom "+local.getNomLocal()+" consultat correctament";		
-                        logRegister(strEstat);
                     }
+                    strEstat = "Operació:localsPerTipoLocal, amb  "+localList.size()+" resultats consultats correctament";		
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
@@ -581,9 +574,10 @@ public class WebServiceLocal {
                         caracteristicaTipoLocal.setCodicaracteristica(rs.getInt("codicaracteristica"));
                         caracteristicaTipoLocal.setCoditipolocal(rs.getInt("coditipolocal"));
                         caracteristicaTipoLocalList.add(caracteristicaTipoLocal);
-                        strEstat = "Operació:caracteristiquesTipoLocal, tipolocal "+caracteristicaTipoLocal.getCoditipolocal()+" consultat correctament";		
-                        logRegister(strEstat);
+                        
                     }
+                    strEstat = "Operació:caracteristiquesTipoLocal, amb  "+caracteristicaTipoLocalList.size()+" resultats consultats correctament";		
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
@@ -633,7 +627,7 @@ public class WebServiceLocal {
                     caracteristica.setTipo(rs.getInt("tipo"));
                     caracteristica.setCodiNivell(rs.getInt("codinivell"));
 
-                    strEstat = "Operació: infoCaracteristica amb: "+ caracteristica.getNomCaracteristicaCA()+ " efectuada correctament";
+                    strEstat = "Operació: infoCaracteristica amb: "+ rs.getString("nomcaracteristicaca")+ " efectuada correctament";
                     logRegister(strEstat);
                     connection.close();
                     stm.close();
@@ -671,7 +665,6 @@ public class WebServiceLocal {
                     throw new ErrorException(strEstat);
                 } else {
                     connection = ds.getConnection();
-
                     String query = "select MAX(codilocal) codilocal  from eAccessible.local";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
@@ -728,9 +721,9 @@ public class WebServiceLocal {
                         caracteristicaValor.setNomCaracteristicaCA(rs.getString("nomcaracteristicaca"));
                         caracteristicaValor.setTipo(rs.getInt("valor"));
                         caracteristicaValorLlista.add(caracteristicaValor);
-                        strEstat = "Operació: caracteristiquesPerCodiLocal amb: "+ caracteristicaValor.getNomCaracteristicaCA()+ " efectuada correctament";
-                     logRegister(strEstat);
                     }
+                    strEstat = "Operació: caracteristiquesPerCodiLocal, amb  "+caracteristicaValorLlista.size()+" resultats consultats correctament";		
+                    logRegister(strEstat);
                     connection.close();
                     stm.close();
                 }
@@ -772,7 +765,7 @@ public class WebServiceLocal {
                     ResultSet rs = stm.executeQuery(query);
                     rs.next();
                     lastCodiAccessibilitat = rs.getInt("codiAccessibilitat");
-                    strEstat = "Operació: codiAccessibilitatLliure amb: "+ lastCodiAccessibilitat+ " efectuada correctament";
+                    strEstat = "Operació: codiAccessibilitatLliure amb: "+ lastCodiAccessibilitat +" efectuada correctament";
                     logRegister(strEstat);
                     connection.close();
                     stm.close();
@@ -792,8 +785,11 @@ public class WebServiceLocal {
         }
         return lastCodiAccessibilitat + 1;
     }
-
-    public void logRegister(String actionToRegister) throws ErrorException {
+    
+    public static void logRegister(String actionToRegister) throws ErrorException {
+        if(actionToRegister == null){
+            actionToRegister= "null";
+        }
         Connection connection = null;
         try{
 			InitialContext cxtLog = new InitialContext();
