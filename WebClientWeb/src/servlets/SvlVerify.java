@@ -50,6 +50,8 @@ public class SvlVerify extends HttpServlet {
 		String codiLocal = request.getParameter("codiLocal");
 		String nomLocal = request.getParameter("nomLocal");
 		
+		System.out.println(codiLocal);
+		
 		session = request.getSession(true);
 		
 		if(!codiLocal.isEmpty()) {
@@ -61,6 +63,9 @@ public class SvlVerify extends HttpServlet {
 			catch (Exception e) { 
 				e.printStackTrace();
 			}
+		}
+		else {
+			System.out.println("NO ENTREM AL IF");
 		}
 		
 		session.setAttribute("nomLocal", nomLocal);

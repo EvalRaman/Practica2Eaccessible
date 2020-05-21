@@ -760,7 +760,7 @@ public class WebServiceLocal {
                 } else {
                     connection = ds.getConnection();
 
-                    String query = "select MAX(codiAccessibilitat) codiAccessibilitat  from eAccessible.accessibilitat";
+                    String query = "select MAX(codiaccessibilitat) codiAccessibilitat  from eAccessible.accessibilitat";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
                     rs.next();

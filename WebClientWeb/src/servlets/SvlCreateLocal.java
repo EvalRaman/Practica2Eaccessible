@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -59,9 +61,15 @@ public class SvlCreateLocal extends HttpServlet {
 		
 		String caracteristicaValor[][] = new String[caracteristiquesLength][2];
 		
+		List<String> caracteristiquesCorrectes = new ArrayList<>();
+		List<String> valorsCorrectes = new ArrayList<>();
 		for(int i = 0; i < caracteristiquesLength; i++){
 			caracteristicaValor[i][0] = request.getParameter("codiCaracteristica"+i);
 			caracteristicaValor[i][1] = request.getParameter("valor"+i);
+			if((String)request.getParameter("valor"+i) != "0") {
+				caracteristiquesCorrectes.add(request.getParameter("codiCaracteristica"+i));
+				valorsCorrectes.add(request.getParameter("valor"+i));
+			}
 		}
 		
 		session = request.getSession(true);
@@ -92,22 +100,13 @@ public class SvlCreateLocal extends HttpServlet {
 		local.setObservacions(observacions);
 		local.setVerificat("N");
 		
-		System.out.println(local.getCodiLocal());
-		System.out.println(local.getCodiTipoLocal());
-		System.out.println(local.getCodiCarrer());
-		System.out.println(local.getNomCarrer());
-		System.out.println(local.getNomVia());
-		System.out.println(local.getNumero());
-		System.out.println(local.getNomLocal());
-		System.out.println(local.getObservacions());
-		
-		for(int i = 0; i < caracteristiquesLength; i++) {
+		for(int i = 0; i < caracteristiquesCorrectes.size(); i++) {
 			accessibilitats[i] = new webservice.Accessibilitat();
 			
 			accessibilitats[i].setCodiLocal(codiLocalLliure);
 			accessibilitats[i].setCodiAccessibilitat(codiAccessibilitatLliure);
-			accessibilitats[i].setCodiCaracteristica(Integer.parseInt(caracteristicaValor[i][0]));
-			accessibilitats[i].setValor(Integer.parseInt(caracteristicaValor[i][1]));
+			accessibilitats[i].setCodiCaracteristica(Integer.parseInt((String) caracteristiquesCorrectes.toArray()[i]));
+			accessibilitats[i].setValor(Integer.parseInt((String) valorsCorrectes.toArray()[i]));
 			accessibilitats[i].setVerificat("N");
 
 			codiAccessibilitatLliure = codiAccessibilitatLliure + 1;

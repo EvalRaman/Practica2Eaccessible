@@ -107,13 +107,10 @@ public class SvlDisplayLocal extends HttpServlet {
 				InfoCaracteristica infoCaracteristica = new InfoCaracteristica();
 				infoCaracteristica.setCodiCaracteristica(caracteristicaLocal[i].getCodiCaracteristica());
 				infoCaracteristica.setNomCaracteristicaCA(caracteristicaLocal[i].getNomCaracteristicaCA());
-				infoCaracteristica.setNomCaracteristicaES(caracteristicaLocal[i].getNomCaracteristicaES());
-				infoCaracteristica.setNomCaracteristicaEN(caracteristicaLocal[i].getNomCaracteristicaEN());
-				infoCaracteristica.setTipo(caracteristicaLocal[i].getTipo());
-				infoCaracteristica.setCodiNivell(caracteristicaLocal[i].getCodiNivell());
 				
 				infoCaracteristiques[i] = infoCaracteristica;
 			}
+			System.out.println("Longitud: " + infoCaracteristiques.length);
 			session.setAttribute("caracteristiques", infoCaracteristiques);		
 		}
 		else {

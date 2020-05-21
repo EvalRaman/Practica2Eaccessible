@@ -8,6 +8,8 @@ public class InfoCaracteristica {
 	int tipo;
 	int codiNivell;
 	
+	
+	
 	public int getCodiCaracteristica() {
 		return codiCaracteristica;
 	}

@@ -102,6 +102,17 @@ body {
   color: white;
 }
 
+.button3 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button3:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -191,7 +202,7 @@ tr:nth-child(even) {
 							<td>
 								<form method="post" action="SvlDisplayLocal">
 									<input type="hidden" value=<%=locals[i].getCodiLocal()%> name="codiLocal">
-									<input class="button button2" type="submit" value="<%=locals[i].getNomLocal()%>">
+									<input class="button button3" type="submit" value="<%=locals[i].getNomLocal()%>">
 								</form>
 							</td>
 							<td><%=locals[i].getNomTipoLocalCA()%></td>

@@ -118,7 +118,7 @@ tr:nth-child(even) {
 		<form method="post" action="SvlVerify">
         	<input type="hidden" name="codiLocal" value="<%=local.getCodiLocal()%>">
         	<input type="hidden" name="nomLocal" value="<%=local.getNomLocal()%>">
-            <button style="padding: 5px" class="button button1" type="submit">Verificar</button>
+            <input class="button button1" type="submit" value="Verificar">		
 		</form>
 			<table style="width:50%">
 				<tr>
@@ -151,14 +151,15 @@ tr:nth-child(even) {
 			else { 
 	%>
 			<h2>Caracteristiques:</h2>
-				
+			<table>
 			<%for(int i = 0; i < infoCaracteristiques.length; i++) { 
 				if(infoCaracteristiques[i] != null) {%>
-					<h3><%=infoCaracteristiques[i].getNomCaracteristicaCA()%></h3>
+					<tr><td><%=infoCaracteristiques[i].getNomCaracteristicaCA()%><td></tr>
 		<%		}
 		%>			    	 
-		<%	}
-			}
+		<%	}%>
+			</table>	
+		<%}
 		%>
 	</div>
 </body>
