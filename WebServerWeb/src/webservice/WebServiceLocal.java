@@ -57,6 +57,7 @@ public class WebServiceLocal {
 		catch(Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: crearLocal";
             logRegister(strEstat);
+            e.printStackTrace();
 			throw new ErrorException(strEstat);
 
 		}
@@ -100,6 +101,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: eliminarLocal";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
 
         } finally {
@@ -201,6 +203,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: localsPerNomLocalICodiTipoLocal";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -254,6 +257,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: localPerCodiLocal";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -311,6 +315,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: localsPerNomLocal";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -322,7 +327,6 @@ public class WebServiceLocal {
         }
         return localList;
     }
-
     @WebMethod
     public List<Local> localsPerTipoLocal(int codiTipoLocal) throws ErrorException {
         String strEstat = new String();
@@ -368,6 +372,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: localsPerTipoLocal";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -420,6 +425,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: cercaTipoLocal";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -475,6 +481,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: localsNoVerificats";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -531,6 +538,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: localsAccessibles";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -585,6 +593,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: caracteristiquesTipoLocal";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -625,10 +634,10 @@ public class WebServiceLocal {
                     caracteristica.setNomCaracteristicaEN(rs.getString("nomcaracteristicaen"));
                     caracteristica.setTipo(rs.getInt("tipo"));
                     caracteristica.setCodiNivell(rs.getInt("codinivell"));
-                    /*
-                    strEstat = "Operació: infoCaracteristica amb: "+ rs.getString("nomcaracteristicaca")+ " efectuada correctament";
+
+                    strEstat = "Operació: infoCaracteristica efectuada correctament";
                     logRegister(strEstat);
-                    */
+                    
                     connection.close();
                     stm.close();
                 }
@@ -636,6 +645,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: infoCaracteristica";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -679,6 +689,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: codiLocalLliure";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -731,6 +742,7 @@ public class WebServiceLocal {
         } catch (Exception e) {
             strEstat = "Error amb la base de dades eAccessible operació: caracteristiquesPerCodiLocal";
             logRegister(strEstat);
+            e.printStackTrace();
             throw new ErrorException(strEstat);
         } finally {
             try {
@@ -772,6 +784,7 @@ public class WebServiceLocal {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             strEstat = "Error amb la base de dades eAccessible operació: codiAccessibilitatLliure";
             logRegister(strEstat);
             throw new ErrorException(strEstat);
@@ -806,8 +819,9 @@ public class WebServiceLocal {
                 }        
             }
         }catch (Exception e) {
-        	e.printStackTrace();
+            e.printStackTrace();
             throw new ErrorException("Error en bbd log");
+            
 
         } finally {
             try {
