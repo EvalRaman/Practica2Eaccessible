@@ -134,7 +134,7 @@ public class WebServiceLocal {
                     String query = "update eAccessible.local set verificat='S' where codilocal=" + codiLocal;
                     Statement stm = connection.createStatement();
                     stm.executeUpdate(query);
-                    strEstat = "Local: " +codiLocal+" verificat correctament";
+                    strEstat = "Local: "+ codiLocal +" verificat correctament";
                     logRegister(strEstat);
                     connection.close();
                     stm.close();
@@ -622,12 +622,13 @@ public class WebServiceLocal {
                     logRegister(strEstat);
                     throw new ErrorException(strEstat);
                 } else {
-                	connection = ds.getConnection();
+                    connection = ds.getConnection();
                     String query = "select codicaracteristica, nomcaracteristicaca, nomcaracteristicaes, nomcaracteristicaen, tipo, codinivell  from eAccessible.caracteristica where caracteristica.codicaracteristica="
                             + codiCaracteristica;
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
                     rs.next();
+
                     caracteristica.setCodiCaracteristica(rs.getInt("codicaracteristica"));
                     caracteristica.setNomCaracteristicaCA(rs.getString("nomcaracteristicaca"));
                     caracteristica.setNomCaracteristicaES(rs.getString("nomcaracteristicaes"));
@@ -772,7 +773,7 @@ public class WebServiceLocal {
                 } else {
                     connection = ds.getConnection();
 
-                    String query = "select MAX(codiaccessibilitat) codiAccessibilitat  from eAccessible.accessibilitat";
+                    String query = "select MAX(codiAccessibilitat) codiAccessibilitat  from eAccessible.accessibilitat";
                     Statement stm = connection.createStatement();
                     ResultSet rs = stm.executeQuery(query);
                     rs.next();
